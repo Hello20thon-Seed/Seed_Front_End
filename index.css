@@ -3,52 +3,86 @@
 } */
 /* background-color: #0f4c81; */
 .logo {
-  position: absolute;
-  top: 10%;
-  left: 50%;
-  transform: translate(-50%, -10%);
-}
-/* .goal {
-  width: 300px;
-  height: 200px;
-  border: solid 2px black;
-  border-radius: 10px;
-  position: absolute;
-  top: 25%;
-  left: 30%;
-}
-.goal p {
-  font-size: 23px;
-  text-align: center;
-} */
-
-body{
-	background-color:#385772;
-}
-
-#plus-goal {
- 	width: 400px;
-  	height: 300px;
-  	border: 2px solid black;
-  	background-color: #4a61a1;
-	border-radius:30px;
-	text-align:center;	
-}
-
-#plus-goal img{
-	width:100px;
-	height:100px;
-	margin: 0 auto;
-}
-
-#pop{
-	width:500px;
-	height:530px;
-	border:2px solid black;
-	position:absolute;
-	top:50%;
-	left:50%;
-	transform:translate(-50%,-50%);
-	background-color: #fff;
-	display:none;
-}
+	position: absolute;
+	top: 10%;
+	left: 50%;
+	transform: translate(-50%, -10%);
+  }
+  /* .goal {
+	width: 300px;
+	height: 200px;
+	border: solid 2px black;
+	border-radius: 10px;
+	position: absolute;
+	top: 25%;
+	left: 30%;
+  }
+  .goal p {
+	font-size: 23px;
+	text-align: center;
+  } */
+  
+  *{
+	  box-sizing:border-box;
+  }
+  
+  a{
+	  text-decoration:none;	
+  }
+  
+  html, body{
+	  background-color:#385772;
+	  width:100%;
+	  height:100%;
+	  margin:0;
+	  padding:0;
+  }
+  
+  
+  #plus-table {
+	   width: 400px;
+		height: 300px;
+		border: 2px solid black;
+		background-color: #4a61a1;
+	  border-radius:30px;
+	  text-align:center;
+	  color: white;
+  }
+  
+  #plus-table img{
+	  width:100px;
+	  height:100px;
+	  margin: 0 auto;
+  }
+  
+  
+  
+  /*---------------------------------------------------*/
+  /* addTable.html*/
+  /* .addTable {
+	  width:500px;
+	  height:530px;
+	  border:2px solid black;
+	  position:absolute;
+	  top:50%;
+	  left:50%;
+	  transform:translate(-50%,-50%);
+	  background-color: #fff;
+  } */
+  .how{
+	  display:none;
+  }
+  .addTable button{
+	  width:60px;
+	  height:30px;
+  }
+  
+  
+  .wrap{
+	  background-color: #E8F1FC;
+	  border-radius: 10px;
+	  width:1000px;
+	  height:100%;
+	  margin:0 auto;
+	  padding:20px;
+  }
