@@ -4,25 +4,49 @@
 		<meta charset="UTF-8" />
 		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
 		<meta http-equiv="X-UA-Compatible" content="ie=edge" />
+		<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
 		<title>Document</title>
 		<link rel="stylesheet" href="./index.css" />
 
 	</head>
 	<body>
 		<div class="logo">
-			<img src="./images/Seedling_Logo.gif" height="200px"/>
+			<img src="./images/Seedling_Logo (2).gif" height="200px"/>
 		</div>
 		<!-- <div class="goal">
 		<div class="l-goal">
 		<p>목표이름</p>
 		</div>
 		</div> -->
-		<a href="./addTable.html">
-			<div id="plus-table">
-				<h1 id="plus">목표추가하기</h1>
+		
+		<div id="tableLayout">
+			<a href="#" class="tableBox">
+				<div class="tableName">대주제</div>
+				<div class="progressBar">
+					<div class="ingBar"></div>
+				</div>
+				<div class="share">
+					<img src="images/people_icon.png" alt="그룹원" height="30px">
+					<span class="people_count">명</span>
+				</div>
+			</a>
+			<a href="#" class="tableBox">
+				<div class="tableName">대주제</div>
+				<div class="progressBar">
+					<div class="ingBar"></div>
+				</div>
+				<div class="share">
+					<img src="images/people_icon.png" alt="그룹원" height="30px">
+					<span class="people_count">명</span>
+				</div>
+			</a>
+			
+
+			<a href="./addTable.html" id="plus-table" class="tableBox">
 				<img src="./images/plus.png" alt="목표추가"/>
-			</div>
-		</a>
+			</a>
+		</div>
+		
 	</body>
 	<script src="./index.js"></script>
 </html>
