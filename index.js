@@ -28,7 +28,7 @@ function createTempNode(n){
 
 	if(n == column) return;
 
-	for(var i=0; n > i ; i++){
+	for(var i   =0; n > i ; i++){
 		var temp = document.createElement("a")
 		temp.setAttribute("class", "temp")
 		tableLayout.appendChild(temp)

@@ -5,22 +5,29 @@
 		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
 		<meta http-equiv="X-UA-Compatible" content="ie=edge" />
 		<title>Document</title>
-		<link rel="stylesheet" href="./index.css" />
+		<link rel="stylesheet" href="./addTable.css" />
 	</head>
 	<body>
 		<div class="wrap">
-			<div class="addTable">
-				<h1>목표 추가</h1>
-				<label for="table">목표<input type="text"></label><br>
-				<div class="button">
-					<button type="submit" id="prev">이전</button>
-					<button type="submit" id="next"><a href="#target">다음</a></button>
+			<a href="./index.html" class="logo"><img src="./images/Seedling_Logo (2).gif" alt="" height="100px"></a>
+			<form action="">
+				<h1>2020년에 <span class="highlight">이루고 싶은 목표</span>를 적어주세요!</h1>
+				<span class="description">(다이어트, 성적 올리기, 취업하기 등 추상적이고 큰 주제를 적어주세요. 이는 목표 테이블의 제목으로 쓰인답니다.)</span>
+			
+				<input type="text" id="bigTitle">
+
+				<h2>위 목표를 달성하기 위한 <span class="highlight">조금 더 구체적인 방법</span>을 적어주세요.</h2>
+				<span class="description">(다이어트 - 헬스장 다니기, 식단 조절하기 / 취업하기 - 토익 점수 800점 이상 받기, 자격증 취득 등<br>많이 구체적일 필요는 없어요. 아직 뻗어나갈 가지가 아직 많거든요!)</span>
+				
+				<div class="semiTitle">
+					<input type="text" class="semiTitleInput"><div class="deleteInput"></div></input>
 				</div>
-			</div>
-			<div id="how" name="target">
-				<h1>질문 1</h1>
-			</div>
-			<script src="./index.js"></script>
+				<div class="semiTitle">
+					<input type="text" class="semiTitleInput"><div class="deleteInput"></div></input>
+				</div>
+			</form>
+			<div id="plusBtn"></div>
 		</div>
 	</body>
+	<script src="addTable.js"></script>
 </html>

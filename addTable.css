@@ -1,0 +1,108 @@
+ 
+*{
+	box-sizing:border-box;
+	color: black;
+	padding: 0;
+	margin: 0;
+}
+
+a{
+	text-decoration:none;	
+}
+
+html, body{
+	background-color:#f1f2f6;
+	width:100%;
+	height:100%;
+	margin:0;
+	padding:0;
+}
+
+body{
+	padding: 1%;
+}
+
+.wrap{
+	background-color: white;
+	box-shadow: 5px 5px 2px lightgray;
+	border-radius: 30px;
+	width:1000px;
+	height:auto;
+	margin:0 auto;
+	padding:15px 40px;
+}
+
+.logo {	
+	display:block;
+    text-align: center;
+    margin: 0 auto 25px;
+    height: 100px;
+    width: 350px;
+    background-color:#a3adbe;
+    border-radius:50px;
+}
+
+h1{
+    font-size: 2.5rem;
+}
+
+.highlight{
+    text-decoration: lightskyblue underline;
+}
+
+.description{
+    color:#888;
+}
+
+form{
+    height: auto;
+}
+
+form input{
+    outline: none;
+    border: none;
+    
+    box-sizing: content-box;
+    width: 100%;
+}
+
+#bigTitle{
+    height: 3rem;
+    font-size: 2rem;
+    margin-top: 1rem;
+    margin-bottom: 50px;
+    border-bottom: 0.2rem solid lightgray;
+}
+
+.semiTitle{
+    height: 70px;
+}
+
+.semiTitleInput{
+    height: 2rem;
+    font-size: 1.5rem;
+    margin-top: 1rem;
+    margin-bottom: 10px;
+    border-bottom: 0.1rem solid lightgray;
+}
+
+#plusBtn{
+    margin:25px auto;
+    width: 75px;
+    height:75px;
+    border-radius: 50%;
+    background-color:lightskyblue;
+}
+
+.deleteInput{
+    height: 2rem;
+    width: 2rem;
+    background-color: rgb(255, 101, 101);
+    position: relative;
+    top: -3rem;
+    left: 95%;
+}
+
+.deleteInput:hover{
+    background-color: lightsalmon;
+}
