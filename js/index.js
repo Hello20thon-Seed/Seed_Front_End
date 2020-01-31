@@ -15,7 +15,7 @@ $.ajax({
 		
 		
 		for(var i = 0; i<bigTitle.length; i++){
-			createTableBox(bigTitle[i]);
+			if(bigTitle[i].level == 0) createTableBox(bigTitle[i]);
 		}
 		createPlusBtn();
 	},
@@ -65,7 +65,6 @@ function createTableBox(table){
 	tableBox.setAttribute("class", "tableBox");
 	tableBox.setAttribute("href", "./pages/sideMenu.html");
 	tableBox.addEventListener("click", () => {
-		alert(getTableId(table._id));
 	});
 
 	tableBox.innerHTML = `<div class="tableName">${table.contents}</div> \
