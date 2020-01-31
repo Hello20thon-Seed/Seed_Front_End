@@ -12,7 +12,7 @@ deleteInput[1].addEventListener("click", (e)=>{
 });
 
 submitBtn.addEventListener("click", () => {
-    var bigTitle = document.querySelector("#bigTitle").value;
+    var bigTitle = document.querySelector("#bigTitle").value.trim();
     var semiTitle = document.querySelectorAll(".semiTitleInput");
     console.log(bigTitle);
     if(bigTitle == ''){
@@ -20,7 +20,7 @@ submitBtn.addEventListener("click", () => {
     }
     else{
         for(var i=0; i<semiTitle.length; i++){
-            if(semiTitle[i].value == ''){
+            if(semiTitle[i].value.trim() == ''){
                 alert("빈칸을 모두 채워주세요!");
                 return;
             }   
@@ -31,9 +31,11 @@ submitBtn.addEventListener("click", () => {
 			semiTitle.forEach((eachSemiTitle) => {
 				postGoal(eachSemiTitle.value, 1, parentsId);
 			});
-		}, 200);
-		
+        }, 200);
+        location.href="../index.html"
     }
+
+    
 });
 
 plusBtn.addEventListener("click", ()=>{
@@ -48,20 +50,21 @@ plusBtn.addEventListener("click", ()=>{
 
     temp2 = document.createElement("div");
     temp2.setAttribute("class", "deleteInput");
+    temp2.innerHTML = '<img src="../images/delete_icon.png" alt="" height="20px">';
     temp.appendChild(temp2);
+    
     temp2.addEventListener("click", (e)=>{
         deleteInputFuc(e);
     });
-
 
     document.querySelector("form").appendChild(temp);
 });
 
 function deleteInputFuc(e){
+    $(e.toElement).parentsUntil("div.semiTitle").parent().remove();
     var semiTitle = e.toElement.parentElement;
     semiTitle.parentElement.removeChild(semiTitle);
 }
-
 
 function postGoal(contents, level, parents){
     console.log("param Parents : "+parents);

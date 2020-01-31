@@ -63,16 +63,14 @@ function createTableBox(table){
 	var tableBox = document.createElement("a");
 
 	tableBox.setAttribute("class", "tableBox");
-	tableBox.setAttribute("href", "./pages/sideMenu.html");
-	tableBox.addEventListener("click", () => {
-	});
+	tableBox.setAttribute("href", `./pages/sideMenu.html?${table._id}`);
 
 	tableBox.innerHTML = `<div class="tableName">${table.contents}</div> \
 	<div class="progressBar"> \
 		<div class="ingBar"></div> \
 	</div> \
 	<div class="share"> \
-		<img src="images/people_icon.png" alt="그룹원" height="30px"> \
+		<img src="images/people_icon.png" a~lt="그룹원" height="30px"> \
 		<span class="people_count">명</span> \
 	</div>`;
 	tableLayout.appendChild(tableBox);

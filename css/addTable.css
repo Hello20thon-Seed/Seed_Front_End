@@ -59,6 +59,13 @@ form input{
     height:75px;
     border-radius: 50%;
     background-color:lightskyblue;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+#plusBtn:hover{
+    background-color: rgb(93, 193, 255);
 }
 
 .deleteInput{
@@ -68,10 +75,13 @@ form input{
     position: relative;
     top: -3rem;
     left: 95%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
 }
 
 .deleteInput:hover{
-    background-color: lightsalmon;
+    background-color: rgb(255, 70, 70);
 }
 
 #submitBtn{
@@ -84,4 +94,8 @@ form input{
     color: white;
     font-weight: bold;
     margin-left: 90%;
+}
+
+#submitBtn:hover{
+    background-color: #0080ff;
 }
