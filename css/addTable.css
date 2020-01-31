@@ -73,3 +73,15 @@ form input{
 .deleteInput:hover{
     background-color: lightsalmon;
 }
+
+#submitBtn{
+    text-align: center;
+    line-height: 30px;
+    width: 75px;
+    height:30px;
+    border-radius: 1rem;
+    background-color:rgb(35, 93, 255);
+    color: white;
+    font-weight: bold;
+    margin-left: 90%;
+}
