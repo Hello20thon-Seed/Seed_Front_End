@@ -19,20 +19,20 @@ window.addEventListener("resize", ()=>{
 
 
 function createTempNode(n){
-	var temps = document.querySelectorAll(".temp")
+	var temps = document.querySelectorAll(".temp")/*
 	console.log(temps+": 삭제해야 할 갯수")
 	console.log(n+": 만들어야 할 갯수")
 	console.log(tables.length+":  테이블 갯수")
-	console.log(column+": 열 갯수")
+	console.log(column+": 열 갯수")*/
 	$(temps).remove()
 
 	if(n == column) return;
 
-	for(var i   =0; n > i ; i++){
+	for(var i=0; n > i ; i++){
 		var temp = document.createElement("a")
 		temp.setAttribute("class", "temp")
 		tableLayout.appendChild(temp)
 
-		console.log(i+"번째 노드")
+		/*console.log(i+"번째 노드")*/
 	}
 }

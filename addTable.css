@@ -1,27 +1,3 @@
- 
-*{
-	box-sizing:border-box;
-	color: black;
-	padding: 0;
-	margin: 0;
-}
-
-a{
-	text-decoration:none;	
-}
-
-html, body{
-	background-color:#f1f2f6;
-	width:100%;
-	height:100%;
-	margin:0;
-	padding:0;
-}
-
-body{
-	padding: 1%;
-}
-
 .wrap{
 	background-color: white;
 	box-shadow: 5px 5px 2px lightgray;
@@ -32,22 +8,13 @@ body{
 	padding:15px 40px;
 }
 
-.logo {	
-	display:block;
-    text-align: center;
-    margin: 0 auto 25px;
-    height: 100px;
+.logo {
     width: 350px;
-    background-color:#a3adbe;
-    border-radius:50px;
+    height: 100px;
 }
 
 h1{
     font-size: 2.5rem;
-}
-
-.highlight{
-    text-decoration: lightskyblue underline;
 }
 
 .description{
