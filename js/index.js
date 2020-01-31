@@ -15,7 +15,9 @@ $.ajax({
 		
 		
 		for(var i = 0; i<bigTitle.length; i++){
-			if(bigTitle[i].level == 0) createTableBox(bigTitle[i]);
+			if(bigTitle[i].level == 0){
+				createTableBox(bigTitle[i]);
+			}
 		}
 		createPlusBtn();
 	},
@@ -31,10 +33,14 @@ var tableLayoutWidth = parseInt(window.getComputedStyle(tableLayout).width) - 45
 var column = parseInt(tableLayoutWidth/tableWidth);
 
 window.addEventListener("resize", ()=>{
+	tables = document.querySelectorAll(".tableBox").length;
+	console.log("tables :" + tables);
 	tableLayoutWidth = parseInt(window.getComputedStyle(tableLayout).width) - 45;
-
+	console.log("tableLayoutWidth :" + tableLayoutWidth);
+	console.log("tables :" + tables)
 	if(column != parseInt(tableLayoutWidth/tableWidth)){
 		column = parseInt(tableLayoutWidth/tableWidth);
+		console.log("column :" + column)
 		createTempNode(column - tables%column);
 	}
 	console.log(column);
