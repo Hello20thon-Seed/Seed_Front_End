@@ -30,9 +30,10 @@ submitBtn.addEventListener("click", () => {
 		setTimeout(()=>{
 			semiTitle.forEach((eachSemiTitle) => {
 				postGoal(eachSemiTitle.value, 1, parentsId);
-			});
+            });
+            location.href="../index.html";
         }, 200);
-        location.href="../index.html"
+        
     }
 
     
