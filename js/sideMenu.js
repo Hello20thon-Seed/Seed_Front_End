@@ -47,9 +47,7 @@ $.ajax({
 	success:function(data){
 		bigTitle = data.data;
 		
-		console.log("Data : " + JSON.stringify(data.data));
-		console.log("bigTitle cnt : " + bigTitle.length);
-		
+		console.log(data.data);		
 		
 		for(var i = 0; i<bigTitle.length; i++){
 			if(bigTitle[i].level == 0){
@@ -79,15 +77,16 @@ function createTitleList(data){
 
 	temp.addEventListener("click", (e)=>{
 		renderNewTree(temp.id);
-	})
+	});
 
-	sideMenu[0].appendChild(temp)
+	sideMenu[0].appendChild(temp);
 }
 
 function renderNewTree(id){
 	console.log("Render Tree : "+id);
 	//여기다가 id 이용해서 메인화면에 트리 그리면 됨.
 }
+
 
 $(".goal-post").click(function(){		//  /goal/:id 목표가져오기
 	$.ajax({
@@ -141,7 +140,7 @@ $('.goal-del').click(function(){
 			console.log(data.success);
 		},
 		error:function(error){
-			console.log(error)
+			console.log(error);
 		}
-	})
-})
+	});
+});

@@ -134,9 +134,11 @@ body{
   background-color:white;
   border-radius:20px;
   box-shadow: 11px 11px 22px #e8e8e8;
+  overflow: hidden;
 }
 
-#chart-container, #chart-container2{
+
+#chart-container, #chart-container2, #chart-container .orgchart{
   height: 100%;
   width:100%;
 }
@@ -150,15 +152,14 @@ body{
 }
 
 #chart-container2 .orgchart .node{
-  width: 160px;
+  width: auto;
   height: 40px !important;
   margin-bottom: 5px;
-  display: flex !important;
-  align-items: baseline !important;
 }
 
 .orgchart .title{
-  width: 160px !important;
+  min-width: 100px;
+  width: auto !important;
   height: 30px !important;
   line-height: 30px !important;
   font-size: 1rem !important;
@@ -183,6 +184,6 @@ body{
 
 .orgchart .node .toggleBtn{
   position: absolute !important;
-  left: 100% !important;
+  left: 105% !important;
   top: 25%;
 }

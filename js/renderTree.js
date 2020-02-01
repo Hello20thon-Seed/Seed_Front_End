@@ -1,23 +1,4 @@
-function renderTree() {
-    var datasource = {
-      'name': 'Lao Lao',
-      'title': 'general manager',
-      'children': [
-        { 'name': 'Bo Miao', 'title': 'department manager' },
-        { 'name': 'Su Miao', 'title': 'department manager',
-          'children': [
-            { 'name': 'Tie Hua', 'title': 'senior engineer' },
-            { 'name': 'Hei Hei', 'title': 'senior engineer',
-              'children': [
-                { 'name': 'Dan Dan', 'title': 'engineer' }
-              ]
-            },
-            { 'name': 'Pang Pang', 'title': 'senior engineer' }
-          ]
-        },
-        { 'name': 'Hong Miao', 'title': 'department manager' }
-      ]
-    };
+function renderTree(datasource) {
 
     var oc = $('#chart-container').orgchart({
       'data' : datasource,
@@ -36,7 +17,4 @@ function renderTree() {
     });
 
     oc2.init({'verticalLevel': 2});
-
 };
-
-renderTree();
