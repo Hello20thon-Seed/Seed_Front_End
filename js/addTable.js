@@ -32,7 +32,7 @@ submitBtn.addEventListener("click", () => {
 				postGoal(eachSemiTitle.value, 1, parentsId);
             });
             location.href="../index.html";
-        }, 200);
+        }, 500);
         
     }
 
