@@ -6,11 +6,8 @@
 
 var sideMenu = document.querySelectorAll(".sideBar > div");
 var bottomMenu = document.querySelectorAll(".bottomMenu > div");
-var nowUrl = window.location.href;
-var id = nowUrl.substring(nowUrl.indexOf('?')+1, nowUrl.length);
 var curMenu = 0;
 
-console.log(id);
 changeMenu(0, 0);
 
 bottomMenu[0].addEventListener("click", (e)=>{
@@ -38,13 +35,11 @@ function changeMenu(toHide, toShow){
 var authUrl = 'https://seed-api.run.goorm.io/auth';
 var url = 'https://seed-api.run.goorm.io';
 
-var id;
-var bigTitle;
-
 $.ajax({
 	url: url+"/goal/all",
 	type:"GET",
 	success:function(data){
+		let bigTitle;
 		bigTitle = data.data;
 		
 		console.log(data.data);		
@@ -84,7 +79,7 @@ function createTitleList(data){
 
 function renderNewTree(id){
 	console.log("Render Tree : "+id);
-	//여기다가 id 이용해서 메인화면에 트리 그리면 됨.
+	renderTree(id);
 }
 
 
