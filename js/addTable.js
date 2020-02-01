@@ -11,7 +11,7 @@ deleteInput[1].addEventListener("click", (e)=>{
     deleteInputFuc(e);
 });
 
-submitBtn.addEventListener("click", () => {
+submitBtn.addEventListener("click", function submit(){
     var bigTitle = document.querySelector("#bigTitle").value.trim();
     var semiTitle = document.querySelectorAll(".semiTitleInput");
     console.log(bigTitle);
@@ -25,7 +25,7 @@ submitBtn.addEventListener("click", () => {
                 return;
             }   
         }
-		
+        
 		postGoal(bigTitle, 0, undefined);
 		setTimeout(()=>{
 			semiTitle.forEach((eachSemiTitle) => {
@@ -35,8 +35,6 @@ submitBtn.addEventListener("click", () => {
         }, 500);
         
     }
-
-    
 });
 
 plusBtn.addEventListener("click", ()=>{

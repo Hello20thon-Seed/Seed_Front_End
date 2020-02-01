@@ -4,8 +4,11 @@
 	<meta charset="UTF-8">
 	<title>Seed_SideMenu</title>
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+	<script src="../js/jquery.mockjax.min.js"></script>
+	<script src="../js/jquery.orgchart.js"></script>
 	<link rel="stylesheet" href="../css/sideMenu.css">
 	<link rel="stylesheet" href="../css/common.css"/>
+	<link rel="stylesheet" href="../css/jquery.orgchart.css">
 	</head>
 	<body>
 			<div class="sideMenu">
@@ -48,14 +51,10 @@
 				</div>
 			</div>
 		<div class="mainTree">
-			<div class="goal">
-				<h1 id=grand-goal>
-					
-				</h1>
-			</div>
+			<div id="chart-container"></div>
 		</div>
 	</body>	
 	<script src="../js/id.js"></script>
 	<script src="../js/sideMenu.js"></script>
-	<script src="../js/tableHandling.js"></script>
+	<script src="../js/renderTree.js"></script>
 </html>

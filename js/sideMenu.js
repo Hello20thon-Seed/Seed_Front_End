@@ -10,7 +10,7 @@ var nowUrl = window.location.href;
 var id = nowUrl.substring(nowUrl.indexOf('?')+1, nowUrl.length);
 var curMenu = 0;
 
-console.log(sideMenu);
+console.log(id);
 changeMenu(0, 0);
 
 bottomMenu[0].addEventListener("click", (e)=>{
@@ -53,7 +53,7 @@ $.ajax({
 		
 		for(var i = 0; i<bigTitle.length; i++){
 			if(bigTitle[i].level == 0){
-				createSideMenuList(bigTitle[i]);
+				createTitleList(bigTitle[i]);
 			}
 		}
 		//createPlusBtn();
@@ -65,7 +65,7 @@ $.ajax({
 	
 });
 
-function createSideMenuList(data){
+function createTitleList(data){
 	var temp = document.createElement("div");
 	temp.setAttribute("class", "sideMenuList tableListEl");
 	temp.id = data._id;
@@ -88,7 +88,6 @@ function renderNewTree(id){
 	console.log("Render Tree : "+id);
 	//여기다가 id 이용해서 메인화면에 트리 그리면 됨.
 }
-
 
 $(".goal-post").click(function(){		//  /goal/:id 목표가져오기
 	$.ajax({
