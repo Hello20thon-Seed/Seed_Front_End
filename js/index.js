@@ -79,7 +79,7 @@ function getUserTables(userEmail){
 		}
 	});
 	return userTables;
-}getUserTables(user.email)
+}getUserTables(userData.email)
 
 async function checkValid(){
 	let plusBox = document.querySelector("#plus-table");
@@ -95,8 +95,8 @@ async function checkValid(){
 	}
 	else{
 		plusBox.setAttribute("href", "./pages/addTable.html");
-		loginBtn.innerHTML="반갑습니다, "+userData.nickname+"님.";
 		loginBtn.style.display="block"
+		loginBtn.innerHTML=`<span>반갑습니다, <span class="highlight">${userData.nickname}</span>님.</span><a id="logout" href="${url}/auth/logout">logout</a>`;
 	}
 }
 

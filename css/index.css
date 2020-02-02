@@ -114,3 +114,19 @@
 	height: 2.5rem;
 	width: auto;
 }
+
+#loginBtn span{
+	color: black;
+
+}
+
+#loginBtn span .highlight{
+	font-weight: 800;
+	font-size: 1.5rem;
+}
+
+#loginBtn a#logout{
+	display: inline-block;
+	background-color: rgb(255, 101, 101);
+	padding:0 10px;
+}
