@@ -3,7 +3,8 @@ var submitBtn = document.querySelector("#submitBtn");
 var deleteInput = document.querySelectorAll(".deleteInput");
 var inputCount = 2;
 var parentsId = 0;
- 
+var user = login();
+
 deleteInput[0].addEventListener("click", (e)=>{
     deleteInputFuc(e);
 });
@@ -27,15 +28,39 @@ submitBtn.addEventListener("click", function submit(){
         }
         
 		postGoal(bigTitle, 0, undefined);
-		setTimeout(()=>{
-			semiTitle.forEach((eachSemiTitle) => {
-				postGoal(eachSemiTitle.value, 1, parentsId);
+		setTimeout(async()=>{
+			semiTitle.forEach(async(eachSemiTitle) => {
+				await postGoal(eachSemiTitle.value, 1, parentsId);
             });
-            location.href="../index.html";
-        }, 500);
-        
+
+            await forkTable(parentsId, user.email);
+            
+            setTimeout(()=>{
+                //location.href = "../index.html";
+            }, 200)
+        }, 300);
     }
 });
+
+
+function forkTable(tableId, userEmail){
+    $.ajax({
+		url: url+'/fork/create',
+		type: 'POST',
+		data:{
+            id : tableId,
+            owner : userEmail
+		},
+		dataType:'json',
+		success: function(data){
+            console.log(`Fork ${tableId} to ${userEmail}`)
+		},
+		error: function(a,b,error){
+			console.log("Error : "+error);
+		}
+    });
+}
+
 
 plusBtn.addEventListener("click", ()=>{
     inputCount += 1;
@@ -68,7 +93,7 @@ function deleteInputFuc(e){
 function postGoal(contents, level, parents){
     console.log("param Parents : "+parents);
     $.ajax({
-		url:'https://seed-api.run.goorm.io/goal/create',
+		url: url+'/goal/create',
 		type: 'POST',
 		data:{
 			contents: contents,
@@ -80,7 +105,7 @@ function postGoal(contents, level, parents){
             getParentsId(contents, level, data.id);
 		},
 		error: function(a,b,error){
-			alert(error);
+			console.log("Error : "+error);
 		}
     });
 }

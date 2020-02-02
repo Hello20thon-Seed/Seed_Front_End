@@ -41,7 +41,6 @@ function renderTree(id){
 
 function makeDataSource(data){
     let bigTable = new table();
-    console.log("making datasource to Data :"+ JSON.stringify(data.data));
 
     bigTable.className =`${data.data._id} level${data.data.level}`;
     bigTable.name = data.data.contents;

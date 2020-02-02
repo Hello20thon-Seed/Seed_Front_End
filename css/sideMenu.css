@@ -157,21 +157,22 @@ body{
   margin-bottom: 5px;
 }
 
+#chart-container .orgchart .node i{
+	display:none;
+}
+
 .orgchart .title{
   min-width: 100px;
   width: auto !important;
   height: 30px !important;
   line-height: 30px !important;
   font-size: 1rem !important;
-  padding: 0 !important;
+  padding: 0 10px!important;
+  border-radius: 4px !important;
 }
 
 #chart-container2 .orgchart > table{
   margin:0;
-}
-
-.orgchart .title{
-  border-radius: 4px !important;
 }
 
 .orgchart .title i{
@@ -186,4 +187,31 @@ body{
   position: absolute !important;
   left: 105% !important;
   top: 25%;
+}
+
+
+#contextMenu{
+  display:none;
+  position:fixed;
+  width:120px;
+  height:auto;
+  background: #fff;
+  box-shadow:1px 1px 5px 0 rgba(0, 0, 0, 0.54);
+  z-index:999;
+  flex-direction: column;
+  border-radius: 1rem;
+}
+
+#contextMenu > div{
+  font-size: 1.1rem;
+  font-weight: 600;
+  width: 100%;
+  height: 40px;
+  line-height: 40px;
+  text-align: center;
+  border-bottom: 1px solid black;
+}
+
+#contextMenu > div:last-child{
+  border-bottom: 0;
 }

@@ -38,21 +38,19 @@ var url = 'https://seed-api.run.goorm.io';
 $.ajax({
 	url: url+"/goal/all",
 	type:"GET",
+	async:false,
 	success:function(data){
 		let bigTitle;
 		bigTitle = data.data;
-		
-		console.log(data.data);		
 		
 		for(var i = 0; i<bigTitle.length; i++){
 			if(bigTitle[i].level == 0){
 				createTitleList(bigTitle[i]);
 			}
 		}
-		//createPlusBtn();
+		getProgress();
 	},
 	error: function(a,b,error){
-		//createPlusBtn();
 		console.log(error);
 	}
 	
@@ -66,11 +64,12 @@ function createTitleList(data){
 	temp.innerHTML = `
 		<span>${data.contents}</span>
 		<div class="progressBar">
-			<div class="ingBar"></div>
+			<div class="ingBar" id="${temp.id}"></div>
 		</div>
 	`;
 
 	temp.addEventListener("click", (e)=>{
+		console.log(e)
 		renderNewTree(temp.id);
 	});
 
@@ -139,3 +138,4 @@ $('.goal-del').click(function(){
 		}
 	});
 });
+

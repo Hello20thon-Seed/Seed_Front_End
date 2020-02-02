@@ -2,8 +2,6 @@ var oc
 var oc2
 
 function renderTree_toDataSource(datasource){
-    console.log("finally render Tree to ID : ")
-    console.log(datasource)
 
     oc = $('#chart-container').orgchart({
       'data' : datasource,
@@ -23,7 +21,8 @@ function renderTree_toDataSource(datasource){
     });
 };
 
-function changeTree(datasource){  
-  oc.init({'data' : datasource});
-  oc2.init({'data' : datasource});
+async function changeTree(datasource){  
+  await oc.init({'data' : datasource});
+  await oc2.init({'data' : datasource});
+  Contextmenu()
 }
