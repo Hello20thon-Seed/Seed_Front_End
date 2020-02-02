@@ -108,7 +108,7 @@ body{
 }
 
 .bottomMenu > *{
-  width: 33.3%;
+  /* width: 33.3%; */
   height: 100%;
   display: flex;
   align-items: center;
@@ -116,8 +116,14 @@ body{
   border-top: solid 2px gray;
   background-color: lightgray;
 }
-
+.myTable{
+	width:33.4%;
+}
+.groupTable{
+	width:33.3%;
+}
 .myTree{
+  width:33.3%;
   border: solid 2px gray;
   border-bottom:0;
 }
@@ -188,8 +194,6 @@ body{
   left: 105% !important;
   top: 25%;
 }
-
-
 #contextMenu{
   display:none;
   position:fixed;
@@ -214,4 +218,17 @@ body{
 
 #contextMenu > div:last-child{
   border-bottom: 0;
+}
+
+.orgchart .node .overMenu{
+	width:25px;
+	height:25px;
+	float:left;
+	position:absolute;
+	margin:0;
+	padding:0;
+  left: 100%; 
+  top: 15%;
+  transition:2s;
+  z-index: 999;
 }

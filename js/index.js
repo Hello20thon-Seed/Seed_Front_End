@@ -79,7 +79,7 @@ function getUserTables(userEmail){
 		}
 	});
 	return userTables;
-}getUserTables(userData.email)
+}getUserTables(userData.email);
 
 async function checkValid(){
 	let plusBox = document.querySelector("#plus-table");

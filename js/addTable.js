@@ -3,7 +3,11 @@ var submitBtn = document.querySelector("#submitBtn");
 var deleteInput = document.querySelectorAll(".deleteInput");
 var inputCount = 2;
 var parentsId = 0;
-var user = login();
+var user = login().data;
+
+
+console.log("user ")
+console.log(user)
 
 deleteInput[0].addEventListener("click", (e)=>{
     deleteInputFuc(e);
@@ -30,13 +34,13 @@ submitBtn.addEventListener("click", function submit(){
 		postGoal(bigTitle, 0, undefined);
 		setTimeout(async()=>{
 			semiTitle.forEach(async(eachSemiTitle) => {
-				await postGoal(eachSemiTitle.value, 1, parentsId);
+				await postGoal(eachSemiTitle.value, 1, parentsId, false);
             });
 
-            await forkTable(parentsId, user.email);
+            forkTable(parentsId, user.email);
             
             setTimeout(()=>{
-                //location.href = "../index.html";
+                location.href = "../index.html";
             }, 200)
         }, 300);
     }
@@ -88,26 +92,6 @@ function deleteInputFuc(e){
     $(e.toElement).parentsUntil("div.semiTitle").parent().remove();
     var semiTitle = e.toElement.parentElement;
     semiTitle.parentElement.removeChild(semiTitle);
-}
-
-function postGoal(contents, level, parents){
-    console.log("param Parents : "+parents);
-    $.ajax({
-		url: url+'/goal/create',
-		type: 'POST',
-		data:{
-			contents: contents,
-            level: String(level),
-            parent: parents
-		},
-		dataType:'json',
-		success: function(data){
-            getParentsId(contents, level, data.id);
-		},
-		error: function(a,b,error){
-			console.log("Error : "+error);
-		}
-    });
 }
 
 function getParentsId(contents, level, id){

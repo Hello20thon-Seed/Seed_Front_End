@@ -17,6 +17,8 @@ $.ajax({
     type:'GET',
     async: false,
     success:function(data){
+		
+		console.log(data)
         renderTree_toDataSource(makeDataSource(data));
     },
     error:function(error){
@@ -31,6 +33,8 @@ function renderTree(id){
         type:'GET',
         async: false,
         success:function(data){
+			
+			console.log(data)
             changeTree(makeDataSource(data));
         },
         error:function(error){
@@ -41,8 +45,9 @@ function renderTree(id){
 
 function makeDataSource(data){
     let bigTable = new table();
-
-    bigTable.className =`${data.data._id} level${data.data.level}`;
+    console.log("making datasource to Data :"+ JSON.stringify(data.data));
+    bigTable.id = `${data.data._id}`;
+    bigTable.className =`${data.data.level}`;
     bigTable.name = data.data.contents;
     bigTable.children = loadTree(data.data._id);
     
@@ -54,8 +59,9 @@ function loadTree(id){
 
     for(let i=0; i<children.length;i++){
         let child = new table();
+        child.id = `${children[i]._id}`;
         child.name = children[i].contents;
-        child.className =`${children[i]._id} ${children[i].level}`;
+        child.className = `${children[i].level}`;
         child.children = loadTree(children[i]._id);
         children[i] = child;
     }

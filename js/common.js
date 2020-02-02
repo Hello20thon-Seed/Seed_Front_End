@@ -21,6 +21,7 @@ function login(){
 		success:function(data){
 			console.log(data.success)
             console.log(data.data)
+            
             user = data;
 		},
 		error: function(a,b,error){

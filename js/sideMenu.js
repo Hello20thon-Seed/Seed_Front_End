@@ -8,6 +8,13 @@ var sideMenu = document.querySelectorAll(".sideBar > div");
 var bottomMenu = document.querySelectorAll(".bottomMenu > div");
 var curMenu = 0;
 
+var user = login().data;
+
+
+console.log("user ")
+console.log(user)
+
+
 changeMenu(0, 0);
 
 bottomMenu[0].addEventListener("click", (e)=>{
@@ -36,16 +43,18 @@ var authUrl = 'https://seed-api.run.goorm.io/auth';
 var url = 'https://seed-api.run.goorm.io';
 
 $.ajax({
-	url: url+"/goal/all",
+	url: url+"/fork/all/"+user.email,
 	type:"GET",
 	async:false,
 	success:function(data){
+		console.log("alsjdnakjsdnlj")
+		console.log(data.data)
 		let bigTitle;
 		bigTitle = data.data;
 		
 		for(var i = 0; i<bigTitle.length; i++){
-			if(bigTitle[i].level == 0){
-				createTitleList(bigTitle[i]);
+			if(bigTitle[i].goal.level == 0){
+				createTitleList(bigTitle[i].goal);
 			}
 		}
 		getProgress();
@@ -57,6 +66,8 @@ $.ajax({
 });
 
 function createTitleList(data){
+	console.log("dataasasd : ")
+	console.log(data)
 	var temp = document.createElement("div");
 	temp.setAttribute("class", "sideMenuList tableListEl");
 	temp.id = data._id;
@@ -70,6 +81,7 @@ function createTitleList(data){
 
 	temp.addEventListener("click", (e)=>{
 		console.log(e)
+		nowId = temp.id
 		renderNewTree(temp.id);
 	});
 
@@ -80,62 +92,3 @@ function renderNewTree(id){
 	console.log("Render Tree : "+id);
 	renderTree(id);
 }
-
-
-$(".goal-post").click(function(){		//  /goal/:id 목표가져오기
-	$.ajax({
-		url: url+'/goal/' + id,
-		type: 'GET',
-		dataType:'json',
-		success:function(data){
-			console.log(data);
-		},
-		error: function(error){
-			console.log(error);
-		}
-	});
-});
-
-$('.sub-get').click(function(){
-	console.log(id);
-	$.ajax({	//목표의 자식 가져오기
-		url:url+'/goal/children/'+id,
-		type:'GET',
-		dataType:'json',
-		success: function(data){
-			console.log(data.data);
-		},
-		error: function(error){
-			console.log(error);
-		}
-	});
-});
-
-$('.par-get').click(function(){
-	$.ajax({	//목표의 부모 가져오기
-		url:url+'/goal/parent/'+id,
-		type:'GET',
-		dataType:'json',
-		success: function(data){
-			console.log(data.data);
-		},
-		error: function(error){
-			console.log(error);
-		}
-	});
-});
-
-$('.goal-del').click(function(){
-	$.ajax({
-		url:url+'/goal/'+id,
-		type:'DELETE',
-		dataType:'json',
-		success: function(data){
-			console.log(data.success);
-		},
-		error:function(error){
-			console.log(error);
-		}
-	});
-});
-
