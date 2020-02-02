@@ -27,7 +27,7 @@ function Contextmenu(){
 			context.style.left = x;
 			context.style.top = y;
             curContextMenu.id = e.path[1].id;
-            curContextMenu.level = e.path[1].className[5];+
+            curContextMenu.level = e.path[1].className[5];
             console.log("Current ContextMenu : ")
             console.log(curContextMenu)
 		});

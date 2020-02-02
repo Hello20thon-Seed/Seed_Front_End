@@ -41,7 +41,7 @@ submitBtn.addEventListener("click", function submit(){
             
             setTimeout(()=>{
                 location.href = "../index.html";
-            }, 200)
+            }, 300)
         }, 300);
     }
 });

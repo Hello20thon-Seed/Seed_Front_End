@@ -13,6 +13,7 @@ function postGoal(contents, level, parents, where = true){
             if(where){
                 if(data.code == 0){
                     getParentsId(contents, level, data.id);
+                    renderTree(nowId);
                     alert("목표를 추가했습니다!")
                 }
                 else{
@@ -21,6 +22,7 @@ function postGoal(contents, level, parents, where = true){
             }
 		},
 		error: function(a,b,error){
+            alert("서버 오류입니다. "+error)
 			console.log("Error : "+error);
 		}
     });
@@ -37,7 +39,7 @@ function editGoal(contents, level, id){
 		dataType:'json',
 		success: function(data){
             if(data.code == 0){
-                getParentsId(contents, level, data.id);
+                renderTree(nowId);
                 alert("목표를 수정했습니다!")
             }
             else{
@@ -45,6 +47,7 @@ function editGoal(contents, level, id){
             }
 		},
 		error: function(a,b,error){
+            alert("서버 오류입니다. "+error)
 			console.log("Error : "+error);
 		}
     });
@@ -57,14 +60,38 @@ function delGoal(id){
 		dataType:'json',
 		success: function(data){
             if(data.code == 0){
-                getParentsId(contents, level, data.id);
+                renderTree(nowId);
                 alert("목표를 제거했습니다!")
+            }
+            else if(data.code == 204){
+                if(confirm("자식 노드가 있습니다. 한꺼번에 삭제하시겠습니까?")){
+                    $.ajax({
+                        url: url+'/goal/all/'+id,
+                        type: 'DELETE',
+                        dataType:'json',
+                        success: function(data){
+                            if(data.code == 0){
+                                renderTree(nowId);
+                                alert("목표를 제거했습니다!")
+                            }
+                            else{
+                                alert("목표를 제거하지못했습니다. 에러코드 : "+data.code)
+                            }
+                        },
+                        error: function(a,b,error){
+                            alert("서버 오류입니다. "+error)
+                            console.log("Error : "+error);
+                        }
+                    })
+                }
+                else return
             }
             else{
                 alert("목표를 제거하지못했습니다. 에러코드 : "+data.code)
             }
 		},
 		error: function(a,b,error){
+            alert("서버 오류입니다. "+error)
 			console.log("Error : "+error);
 		}
     });
