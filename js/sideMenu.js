@@ -1,14 +1,6 @@
-// var mTable = document.querySelector(".myTable");
-// var mTree = document.querySelector(".myTree");
-// var gTable = document.querySelector(".grouppTable");
-
-// ??? 너 하고있냐 디코 ㄱ ㄱ
-
 var sideMenu = document.querySelectorAll(".sideBar > div");
 var bottomMenu = document.querySelectorAll(".bottomMenu > div");
 var curMenu = 0;
-
-var user = login().data;
 
 changeMenu(0, 0);
 
@@ -37,6 +29,7 @@ function changeMenu(toHide, toShow){
 
 var authUrl = 'https://seed-api.run.goorm.io/auth';
 var url = 'https://seed-api.run.goorm.io';
+// 이 위로는 고정 
 
 $.ajax({
 	url: url+"/fork/all/"+user.email,
@@ -130,4 +123,3 @@ function createPeopleList(email){
 	
 	sideMenu[2].appendChild(temp);
 }
-

@@ -3,7 +3,7 @@ var url = "https://seed-api.run.goorm.io";
 var nowUrl = window.location.href;
 
 var nowId = nowUrl.substring(nowUrl.indexOf('?')+1, nowUrl.length);
-
+/*
 function getProgress(){
     var ingBar = document.querySelectorAll(".ingBar")
     ingBar.forEach((eachIngBar) => {
@@ -15,25 +15,44 @@ function getProgress(){
 		}
 
     });
-}
+}*/
 
 function login(){
+	let user = []
 	$.ajax({
 		url: url+"/auth/profile",
-        type:"GET",
-        async:false,
+		type:"GET",
+		async:false,
 		xhrFields: {
 			withCredentials: true
 		},
 		success:function(data){
-            user = data;
+			if(data.code != '0'){
+				console.log("classes.js::login() - Error : " + data.code)
+				user = [false, data.code]
+			}
+			else{
+				user = [true, data.data]
+			}
 		},
 		error: function(a,b,error){
-            console.log("common.js::login() - Error : "+error);
-            user = error
+			console.log("classes.js::login() - Error : " + error);
+			user = [false, error]
 		}
 		
-    });
-    
-    return user
+	});
+	return user
 };
+
+function checkLogin(){
+	let user = login()
+	if(user[0]){
+		console.log("UserData:")
+		console.log(user)
+	}
+	else{
+		alert("로그인 오류입니다.")
+	}
+
+	return user
+}

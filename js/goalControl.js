@@ -13,7 +13,7 @@ function postGoal(contents, level, parents, where = true){
             if(where){
                 if(data.code == 0){
 					if(where) getParentsId(contents, level, data.id);
-                    renderTree(nowId);
+                    if(where) renderTree(nowId);
                     alert("목표를 추가했습니다!")
                 }
                 else{

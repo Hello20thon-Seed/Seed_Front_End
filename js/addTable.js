@@ -3,11 +3,10 @@ var submitBtn = document.querySelector("#submitBtn");
 var deleteInput = document.querySelectorAll(".deleteInput");
 var inputCount = 2;
 var parentsId = 0;
-var user = login().data;
 var selectForkId = null;
 
-console.log("user ")
-console.log(user)
+var user = login()
+user = new User(user[1])
 
 deleteInput[0].addEventListener("click", (e)=>{
     deleteInputFuc(e);
@@ -17,7 +16,7 @@ deleteInput[1].addEventListener("click", (e)=>{
 });
 
 submitBtn.addEventListener("click", function submit(){
-    var bigTitle = document.querySelector("#bigTitle").value.trim();
+    var bigTitle = document.querySelector("#bigTitle").value.replaceAll("<", "&lt;").replaceAll(">", "&gt;").trim();
     var semiTitle = document.querySelectorAll(".semiTitleInput");
     console.log(bigTitle);
     if(bigTitle == ''){
@@ -25,7 +24,8 @@ submitBtn.addEventListener("click", function submit(){
     }
     else{
         for(var i=0; i<semiTitle.length; i++){
-            if(semiTitle[i].value.trim() == ''){
+            semiTitle[i] = semiTitle[i].value.replaceAll("<", "&lt;").replaceAll(">", "&gt;").trim();
+            if(semiTitle[i] == ''){
                 alert("빈칸을 모두 채워주세요!");
                 return;
             }   
@@ -34,18 +34,16 @@ submitBtn.addEventListener("click", function submit(){
 		postGoal(bigTitle, 0, undefined);
 		setTimeout(async()=>{
 			semiTitle.forEach(async(eachSemiTitle) => {
-				await postGoal(eachSemiTitle.value, 1, parentsId);
+				await postGoal(eachSemiTitle.value, 1, parentsId, false);
             });
 
             forkTable(parentsId, user.email);
-            
             setTimeout(()=>{
                 location.href = "../index.html";
-            }, 300)
+            }, 200)
         }, 300);
     }
 });
-
 
 function forkTable(tableId, userEmail){
     $.ajax({
@@ -57,11 +55,16 @@ function forkTable(tableId, userEmail){
 		},
 		dataType:'json',
 		success: function(data){
+            if(data.code != 0){
+				console.log("addTable.js::forkTable - Error : " + data.code);
+				return
+            }
+            
             console.log(`Fork ${tableId} to ${userEmail}`)
 			selectForkId = data.id;
 		},
 		error: function(a,b,error){
-			console.log("Error : "+error);
+			console.log("addTable.js::forkTable - Error : " + error);
 		}
     });
 }

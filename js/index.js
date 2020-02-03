@@ -1,108 +1,69 @@
+var user
+var tables = [];
+
 var tableLayout = document.querySelector("#tableLayout");
-var bigTitle = [];
-var tables = 0;
-var userData={
-	_id:'',
-	email:'',
-	nickname:'',
-	profile:'',
-	__v:''
-}
 
-user = login();
-console.log("UserData:")
-console.log(user)
-if(user == 'Unauthorized'){
-	userData={
-		_id:'',
-		email:'',
-		nickname:'',
-		profile:'',
-		__v:''
+const tableWidth = 385 + 20 * 2;
+var tableLayoutWidth = parseInt(window.getComputedStyle(tableLayout).width) - 45;
+var column = parseInt(tableLayoutWidth/tableWidth);
+
+function checkValid(){
+	
+	var loginBtn = document.querySelector("#loginBtn");
+
+	user = login()
+	if(user[0]){
+		user = new User(user[1])
+		console.log("UserData:")
+		console.log(user)
+		
+		getUserTables(user.email)
+		setTimeout(()=>{
+			var plusBox = document.querySelector("#plus-table");
+			plusBox.setAttribute("href", "./pages/addTable.html");
+		}, 300)
+		loginBtn.style.display="block"
+		loginBtn.innerHTML=`<span>반갑습니다, <span class="highlight">${user.nickname}</span>님.</span><a id="logout" href="${url}/auth/logout">logout</a>`;
+		
+		
 	}
-}
-else userData = user.data;
+	else{
+		createPlusBtn();
+		var plusBox = document.querySelector("#plus-table");
+		console.log("Yet login")
 
-function getAllTables(){
-	let allTables
-	$.ajax({
-		url: url+"/goal/all",
-		type:"GET",
-		success:function(data){
-			bigTitle = data.data;
-			console.log("All Data : " + JSON.stringify(data.data));
-			console.log(data)
-			//console.log("bigTitle cnt : " + bigTitle.length);
-			
-			allTables = data.data
-			
-			for(var i = 0; i<bigTitle.length; i++){
-				if(bigTitle[i].level == 0){
-					createTableBox(bigTitle[i]);
-				}
-			}
-			createPlusBtn();
-		},
-		error: function(a,b,error){
-			createPlusBtn();
-			console.log("Error : "+error);
-		}
-	});
+		loginBtn.style.display="block"
 
-	return allTables
-}//getAllTables();
+		setTimeout(()=>{
+			plusBox.addEventListener("click", ()=>{
+				alert("로그인을 해 주세요!")
+			})
+		});
+	}
+}checkValid();
 
 function getUserTables(userEmail){
-	let userTables
 	$.ajax({
 		url: url+"/fork/all/"+userEmail,
 		type:"GET",
 		success:function(data){
-			console.log(data)
-			userTables = data.data
+			if(data.code != 0){
+				console.log("index.js::getUserTables - Error : " + data.code)
+				return
+			}
 			
-			//console.log("User Table : " + JSON.stringify(userTables));
-			//console.log("UserData cnt : " + userTables.length);
-			
-			
-			for(var i = 0; i<userTables.length; i++){
-				if(userTables[i].goal.level == 0){
-					console.log(userTables[i].goal.level)
-					createTableBox(userTables[i].goal);
-				}
+			for(let i=0; i<data.data.length; i++){
+				tables[i] = new TableList(data.data[i])
+				tables[i].createTableBox()
 			}
 			createPlusBtn();
 		},
 		error: function(a,b,error){
 			createPlusBtn();
-			console.log("Error : "+error);
+			console.log("index.js::getUserTables - Error : " + error);
 		}
 	});
-	return userTables;
-}getUserTables(userData.email);
-
-async function checkValid(){
-	let plusBox = document.querySelector("#plus-table");
-	let loginBtn = document.querySelector("#loginBtn");
-
-	if(userData.email == ''){
-		console.log("Yet login")
-		loginBtn.style.display="block"
-		
-		plusBox.addEventListener("click", ()=>{
-			alert("로그인을 해 주세요!")
-		})
-	}
-	else{
-		plusBox.setAttribute("href", "./pages/addTable.html");
-		loginBtn.style.display="block"
-		loginBtn.innerHTML=`<span>반갑습니다, <span class="highlight">${userData.nickname}</span>님.</span><a id="logout" href="${url}/auth/logout">logout</a>`;
-	}
-}
-
-var tableWidth = 385 + 20 * 2;
-var tableLayoutWidth = parseInt(window.getComputedStyle(tableLayout).width) - 45;
-var column = parseInt(tableLayoutWidth/tableWidth);
+};
 
 window.addEventListener("resize", ()=>{
 	tables = document.querySelectorAll(".tableBox").length;
@@ -124,27 +85,7 @@ function createTempNode(n){
 		var temp = document.createElement("a");
 		temp.setAttribute("class", "temp");
 		tableLayout.appendChild(temp);
-
-		
 	}
-}
-
-function createTableBox(table){
-	var tableBox = document.createElement("a");
-
-	tableBox.setAttribute("class", "tableBox");
-	tableBox.setAttribute("href", `./pages/sideMenu.html?${table._id}`);
-
-	tableBox.innerHTML = `<div class="tableName">${table.contents}</div> \
-	<div class="progressBar"> \
-		<div class="ingBar" id="${table._id}"></div> \
-	</div> \
-	<div class="share"> \
-		<img src="images/people_icon.png" a~lt="그룹원" height="30px"> \
-		<span class="people_count">명</span> \
-	</div>`;
-	tableLayout.appendChild(tableBox);
-	
 }
 
 function createPlusBtn(){
@@ -156,11 +97,7 @@ function createPlusBtn(){
 
 	tableLayout.appendChild(plusBox);	
 
-
 	var tables = document.querySelectorAll(".tableBox").length;
 
 	createTempNode(column - tables%column);
-	getProgress();
-	checkValid();
 }
-
