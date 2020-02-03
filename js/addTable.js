@@ -4,7 +4,7 @@ var deleteInput = document.querySelectorAll(".deleteInput");
 var inputCount = 2;
 var parentsId = 0;
 var user = login().data;
-
+var selectForkId = null;
 
 console.log("user ")
 console.log(user)
@@ -34,7 +34,7 @@ submitBtn.addEventListener("click", function submit(){
 		postGoal(bigTitle, 0, undefined);
 		setTimeout(async()=>{
 			semiTitle.forEach(async(eachSemiTitle) => {
-				await postGoal(eachSemiTitle.value, 1, parentsId, false);
+				await postGoal(eachSemiTitle.value, 1, parentsId);
             });
 
             forkTable(parentsId, user.email);
@@ -58,6 +58,7 @@ function forkTable(tableId, userEmail){
 		dataType:'json',
 		success: function(data){
             console.log(`Fork ${tableId} to ${userEmail}`)
+			selectForkId = data.id;
 		},
 		error: function(a,b,error){
 			console.log("Error : "+error);
@@ -92,14 +93,4 @@ function deleteInputFuc(e){
     $(e.toElement).parentsUntil("div.semiTitle").parent().remove();
     var semiTitle = e.toElement.parentElement;
     semiTitle.parentElement.removeChild(semiTitle);
-}
-
-function getParentsId(contents, level, id){
-    if(level == 0){
-        console.log(`${contents}\n${level}\n${id}`);
-        parentsId = id;
-    }
-    else{
-        console.log(`${contents}\n${level}\n${id}`);
-    }
 }

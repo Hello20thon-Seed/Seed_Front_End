@@ -1,12 +1,19 @@
 var user;
 var url = "https://seed-api.run.goorm.io";
+var nowUrl = window.location.href;
+
+var nowId = nowUrl.substring(nowUrl.indexOf('?')+1, nowUrl.length);
 
 function getProgress(){
     var ingBar = document.querySelectorAll(".ingBar")
     ingBar.forEach((eachIngBar) => {
-        //여기서 달성률 가져와서
-        progress = Math.random()*100;
-        eachIngBar.style.width = `${progress}%`;
+        progress = getGoalPercent(eachIngBar.id, eachIngBar.id);
+		if(progress === 0) {
+			eachIngBar.style.width = '0%';
+		} else {
+			eachIngBar.style.width = `${progress}%`;			
+		}
+
     });
 }
 
@@ -19,13 +26,10 @@ function login(){
 			withCredentials: true
 		},
 		success:function(data){
-			console.log(data.success)
-            console.log(data.data)
-            
             user = data;
 		},
 		error: function(a,b,error){
-            console.log("Error : "+error);
+            console.log("common.js::login() - Error : "+error);
             user = error
 		}
 		

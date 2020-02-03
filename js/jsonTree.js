@@ -13,15 +13,14 @@ function table(){
 }
 
 $.ajax({
-    url:url+'/goal/'+nowId,
+    url:url+'/fork/'+nowId,
     type:'GET',
     async: false,
     success:function(data){
-		
-		console.log(data)
         renderTree_toDataSource(makeDataSource(data));
     },
     error:function(error){
+		alert("서버 오류입니다. "+error)
         console.log(error);
     }
 });
@@ -29,15 +28,15 @@ $.ajax({
 function renderTree(id){
     console.log("rendering Tree to ID :"+id);
     $.ajax({
-        url:url+'/goal/'+id,
+        url:url+'/fork/'+id,
         type:'GET',
         async: false,
         success:function(data){
-			
 			console.log(data)
             changeTree(makeDataSource(data));
         },
         error:function(error){
+			alert("서버 오류입니다. "+error)
             console.log(error);
         }
     });
@@ -80,6 +79,7 @@ function loadChildren(id){
             arr = data.data;
 		},
 		error:function(error){
+			alert("서버 오류입니다. "+error)
 			console.log(error);
 		}
     });

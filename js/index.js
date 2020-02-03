@@ -144,6 +144,7 @@ function createTableBox(table){
 		<span class="people_count">명</span> \
 	</div>`;
 	tableLayout.appendChild(tableBox);
+	
 }
 
 function createPlusBtn(){

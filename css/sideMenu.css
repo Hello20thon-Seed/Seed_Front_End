@@ -55,7 +55,7 @@ body{
   height: auto;
 }
 
-.tableListEl{
+.tableListEl, .people{
   padding: 10px;
   display: flex;
   justify-content: space-between;
@@ -63,13 +63,13 @@ body{
   white-space:nowrap;
 }
 
-.tableListEl:hover{
+.tableListEl:hover, .people:hover{
   transition: 0.5s;
   border-radius: 5px;
   background-color: lightgray;
 }
 
-.tableListEl span{
+.tableListEl span, .people span{
   font-size: 1.5rem;
   font-weight: bolder;
   display: inline-block;
@@ -92,7 +92,7 @@ body{
 .progressBar .ingBar{
 	background-color: #428dff;
 	border-radius:15px;
-	width: 35%;
+	width: 0%;
 	height: 100%;
 }
 

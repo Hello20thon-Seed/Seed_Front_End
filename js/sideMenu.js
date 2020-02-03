@@ -10,11 +10,6 @@ var curMenu = 0;
 
 var user = login().data;
 
-
-console.log("user ")
-console.log(user)
-
-
 changeMenu(0, 0);
 
 bottomMenu[0].addEventListener("click", (e)=>{
@@ -39,6 +34,7 @@ function changeMenu(toHide, toShow){
 	bottomMenu[toHide].style.borderTop='solid 2px gray';
 	bottomMenu[toShow].style.borderTop='none';
 }
+
 var authUrl = 'https://seed-api.run.goorm.io/auth';
 var url = 'https://seed-api.run.goorm.io';
 
@@ -47,8 +43,6 @@ $.ajax({
 	type:"GET",
 	async:false,
 	success:function(data){
-		console.log("alsjdnakjsdnlj")
-		console.log(data.data)
 		let bigTitle;
 		bigTitle = data.data;
 		
@@ -57,17 +51,16 @@ $.ajax({
 				createTitleList(bigTitle[i].goal);
 			}
 		}
+	
 		getProgress();
 	},
 	error: function(a,b,error){
-		console.log(error);
+		alert("서버 오류입니다. "+error)
 	}
 	
 });
 
 function createTitleList(data){
-	console.log("dataasasd : ")
-	console.log(data)
 	var temp = document.createElement("div");
 	temp.setAttribute("class", "sideMenuList tableListEl");
 	temp.id = data._id;
@@ -82,7 +75,14 @@ function createTitleList(data){
 	temp.addEventListener("click", (e)=>{
 		console.log(e)
 		nowId = temp.id
-		renderNewTree(temp.id);
+		location.href = `./sideMenu.html?${nowId}`;
+		//renderNewTree(temp.id);
+	});
+	
+	temp.addEventListener("contextmenu", (e)=>{
+		console.log("BigTitleCOntextMenu");
+		curContextMenu2.id = temp.id
+		contextMenu2(e)
 	});
 
 	sideMenu[0].appendChild(temp);
@@ -92,3 +92,42 @@ function renderNewTree(id){
 	console.log("Render Tree : "+id);
 	renderTree(id);
 }
+
+
+$.ajax({
+	url: url+"/fork/user/"+nowId,
+	type:"GET",
+	async:false,
+	success:function(data){
+		console.log("People : ")
+		console.log(data)
+		
+		let people;
+		people = data.data;
+
+		for(var i = 0; i<people.length; i++){
+			createPeopleList(people[i]);
+		}
+		
+	},
+	error: function(a,b,error){
+		alert("서버 오류입니다. "+error)
+		console.log(error);
+	}
+
+});
+
+function createPeopleList(email){
+	var temp = document.createElement("div");
+	temp.setAttribute("class", "sideMenuList people");
+	
+	temp.innerHTML = `
+		<span>${email}</span>
+		<div class="progressBar">
+			<div class="ingBar" id="${email}"></div>
+		</div>
+	`;
+	
+	sideMenu[2].appendChild(temp);
+}
+

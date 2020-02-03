@@ -1,29 +1,11 @@
 function showOverMenu(){
-	var nodeEl = document.querySelectorAll('.mainTree .node');
+	var nodeEl = document.querySelectorAll('.node');
 	for(let i=0;i<nodeEl.length;i++){
-		console.log(nodeEl[i])
 		createOverMenu(nodeEl[i]);
-		
-	
-	
-		/*
-		nodeEl[i].addEventListener("mouseenter", (el)=>{	// 마우스 올렸을때 overMenu 생성
-			var ele = $(el.toElement);
-			createOverMenu(i);
-			console.log(ele)
-			Contextmenu();
-		})*//*
-		nodeEl[i].addEventListener("mouseleave", (el)=>{	//마우스 내렸을때 overMenu 삭제
-			console.log(el)
-
-			var ele = $(el.toElement);
-			deleteOverMenu()
-		})*/
 	}
 	Contextmenu();
 }
 showOverMenu();  
-
 
 
 function createOverMenu(node){
@@ -41,10 +23,4 @@ function createOverMenu(node){
 	node.addEventListener("mouseleave", (el)=>{	//마우스 내렸을때 overMenu 삭제
 		overMenu.style.display = "none"
 	})
-}/*
-function deleteOverMenu(){
-	var over = document.querySelector('#overMenu')
-	console.log(over)
-	over.style();
-}*/
-
+}

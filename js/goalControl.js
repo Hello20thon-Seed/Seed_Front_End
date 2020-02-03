@@ -12,7 +12,7 @@ function postGoal(contents, level, parents, where = true){
 		success: function(data){
             if(where){
                 if(data.code == 0){
-                    getParentsId(contents, level, data.id);
+					if(where) getParentsId(contents, level, data.id);
                     renderTree(nowId);
                     alert("목표를 추가했습니다!")
                 }
@@ -28,7 +28,16 @@ function postGoal(contents, level, parents, where = true){
     });
 }
 
+//replaceAll prototype 선언
+String.prototype.replaceAll = function(org, dest) {
+    return this.split(org).join(dest);
+}
+
 function editGoal(contents, level, id){
+	// 사용자 특이 입력 방지
+	contents = contents.replaceAll("<", "&lt;").replaceAll(">", "&gt;").trim();
+	if(contents == "") return
+	
     $.ajax({
 		url: url+'/goal/'+id,
 		type: 'PUT',
@@ -48,9 +57,9 @@ function editGoal(contents, level, id){
 		},
 		error: function(a,b,error){
             alert("서버 오류입니다. "+error)
-			console.log("Error : "+error);
-		}
-    });
+			console.log("Error : "+error)
+    	}
+	});
 }
 
 function delGoal(id){
@@ -95,4 +104,36 @@ function delGoal(id){
 			console.log("Error : "+error);
 		}
     });
+}
+
+
+function delGoal2(id){
+    $.ajax({
+		url: url+'/fork/'+id,
+		type: 'DELETE',
+		dataType:'json',
+		success: function(data){
+            if(data.code == 0){
+                renderTree(nowId);
+                alert("목표를 제거했습니다!");
+            }
+            else{
+                alert("목표를 제거하지못했습니다. 에러코드 : "+data.code)
+            }
+		},
+		error: function(a,b,error){
+            alert("서버 오류입니다. "+error)
+			console.log("Error : "+error);
+		}
+    });
+}
+
+function getParentsId(contents, level, id){
+    if(level == 0){
+        console.log(`${contents}\n${level}\n${id}`);
+        parentsId = id;
+    }
+    else{
+        console.log(`${contents}\n${level}\n${id}`);
+    }
 }
