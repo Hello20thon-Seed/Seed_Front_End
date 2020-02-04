@@ -23,20 +23,7 @@ function getGoalPercent(targetId = nowId, forkId = nowId, email = user.email) {
 }
 
 function doneGoal(targetId = curTable.originId , forkId = curContextMenu.id, email = user.email) {
-<<<<<<< HEAD
-	// let selectId = `#chart-container .node #${forkId}`;
-	// var goalBlock = document.querySelector(selectId);
-	var goalBlock2 = document.getElementById(`${forkId}`);  
-	// var goalBlock3 = document.querySelectorAll(`${forkId}`);
-	var goalBlock4 = $(`#${forkId}`);
-	// console.log(selectId)
-	// console.log(goalBlock);
-	console.log(goalBlock2);
-	// console.log(goalBlock3);	//야 니 소스코드 안들어오는데
-	console.log(goalBlock4)
-=======
 	var goalBlock = document.querySelectorAll(`#id${forkId} .title`);
->>>>>>> 306bdcb56ab804b6166d9f9e9a75bd7beaeed3be
 	$.ajax({
 		url: `${url}/done/${forkId}/${targetId}`,
 		type: 'PUT',
@@ -56,13 +43,9 @@ function doneGoal(targetId = curTable.originId , forkId = curContextMenu.id, ema
 			}
 			
 			alert('목표 달성 완료!');
-<<<<<<< HEAD
-			goalBlock2.style.backgroundColor = "#37844f";
-=======
 
 			goalBlock[0].style.backgroundColor = "#37844f";
 			goalBlock[1].style.backgroundColor = "#37844f";
->>>>>>> 306bdcb56ab804b6166d9f9e9a75bd7beaeed3be
 			// getProgress();
 		},
 		error: (xhr, status, err) => {
@@ -86,7 +69,7 @@ function cancelDoneGoal(targetId = curTable.originId, forkId = curContextMenu.id
 		},
 		error: (xhr, status, err) => {
 			console.log('done.js::cancelDoneGoal() Error - ' + err);
-		} 
+		}
 	});
 }
 // $.ajax({
