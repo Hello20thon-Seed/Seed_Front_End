@@ -41,7 +41,7 @@ function Contextmenu(){
 			context.style.display = 'block';
 			context.style.left = x;
 			context.style.top = y;
-			curContextMenu.id = e.path[1].id;
+			curContextMenu.id = e.path[1].id.substr(2);
             curContextMenu.level = e.path[1].className[5];
             console.log("Current ContextMenu : ")
             console.log(curContextMenu)
@@ -85,7 +85,7 @@ var db = false;
 				cancelDoneGoal(curContextMenu.id);
 				break;
             case "doneGoal_cm":
-				doneGoal(curContextMenu.id);
+				doneGoal();
 				break;
 			case "delGoal_cm2":
 				delGoal2(curContextMenu2.id);
