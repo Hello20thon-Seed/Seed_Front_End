@@ -23,7 +23,7 @@ function getGoalPercent(targetId = nowId, forkId = nowId, email = user.email) {
 }
 
 function doneGoal(targetId, forkId = nowId, email = user.email) {
-	var goalBlock = document.querySelector(`.${forkId}`);
+	var goalBlock = document.querySelector(`#${forkId}`);
 	$.ajax({
 		url: `${url}/done/${forkId}/${targetId}`,
 		type: 'PUT',
