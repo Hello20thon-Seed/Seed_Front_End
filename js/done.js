@@ -22,7 +22,7 @@ function getGoalPercent(targetId = nowId, forkId = nowId, email = user.email) {
 	return result;
 }
 
-function doneGoal(targetId, forkId = nowId, email = user.email) {
+function doneGoal(targetId = curTable.originId , forkId = curContextMenu.id, email = user.email) {
 	var goalBlock = document.querySelector(`#${forkId}`);
 	$.ajax({
 		url: `${url}/done/${forkId}/${targetId}`,
@@ -44,7 +44,7 @@ function doneGoal(targetId, forkId = nowId, email = user.email) {
 			
 			alert('목표 달성 완료!');
 			goalBlock.style.backgroundColor = "#37844f";
-			getProgress();
+			// getProgress();
 		},
 		error: (xhr, status, err) => {
 			console.log('done.js::doneGoal() Error - ' + err);
@@ -52,7 +52,7 @@ function doneGoal(targetId, forkId = nowId, email = user.email) {
 	});
 }
 
-function cancelDoneGoal(targetId, forkId = nowId, email = user.email) {
+function cancelDoneGoal(targetId = curTable.originId, forkId = curContextMenu.id, email = user.email) {
 	$.ajax({
 		url: `${url}/done/${forkId}/${targetId}`,
 		type: 'DELETE',
@@ -63,7 +63,7 @@ function cancelDoneGoal(targetId, forkId = nowId, email = user.email) {
 		dataType:'json',
 		success: (data) => {
 			alert('목표 달성 취소');
-			getProgress();
+			// getProgress();
 		},
 		error: (xhr, status, err) => {
 			console.log('done.js::cancelDoneGoal() Error - ' + err);
