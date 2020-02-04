@@ -50,7 +50,7 @@ function editGoal(contents, level, id){
 		dataType:'json',
 		success: function(data){
             if(data.code == 0){
-                renderTree(nowId);
+                //renderTree(nowId);
                 alert("목표를 수정했습니다!")
             }
             else{
@@ -66,18 +66,18 @@ function editGoal(contents, level, id){
 
 function delGoal(id){
     $.ajax({
-		url: url+'/goal/'+id,
+		url: url+'/fork/'+id,
 		type: 'DELETE',
 		dataType:'json',
 		success: function(data){
-            if(data.code == 0){
-                renderTree(nowId);
+            if(data.code == '0'){
+                //renderTree(nowId);
                 alert("목표를 제거했습니다!")
             }
             else if(data.code == 204){
                 if(confirm("자식 노드가 있습니다. 한꺼번에 삭제하시겠습니까?")){
                     $.ajax({
-                        url: url+'/goal/all/'+id,
+                        url: url+'/fork/all/'+id,
                         type: 'DELETE',
                         dataType:'json',
                         success: function(data){

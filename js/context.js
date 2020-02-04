@@ -75,6 +75,7 @@ var db = false;
                 postGoal(prompt("추가할 목표를 입력하세요."), curContextMenu.level, curContextMenu.id);
                 break;
             case "delGoal_cm":
+                console.log("Delete Goal : "+curContextMenu.id)
 				delGoal(curContextMenu.id);
                 break;
             case "editGoal_cm":
