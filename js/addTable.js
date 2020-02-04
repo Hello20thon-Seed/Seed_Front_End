@@ -49,7 +49,10 @@ submitBtn.addEventListener("click", function submit(){
 function forkTable(tableId, userEmail){
     $.ajax({
 		url: url+'/fork/create',
-		type: 'POST',
+        type: 'POST',
+        xhrFields: {
+            withCredentials: true
+        },
 		data:{
             id : tableId,
             owner : userEmail
