@@ -7,6 +7,7 @@ var ajaxURLs = {
 };
 
 function table(){ 
+    this.id
     this.name;
     this.className;
     this.children = [];
@@ -43,7 +44,7 @@ function renderTree(id){
 }
 
 function makeDataSource(data){
-    let bigTable = new table();
+    let bigTable = new table();    
     console.log("making datasource to Data :"+ JSON.stringify(data.data));
     bigTable.id = `${data.data._id}`;
     bigTable.className =`${data.data.level}`;
@@ -68,15 +69,22 @@ function loadTree(id){
     return children;
 }
 
-function loadChildren(id){
+function loadChildren(){
     let arr = [];
 	$.ajax({
-		url:ajaxURLs.children + id,
+		url:ajaxURLs.children + this.id,
 		type:'GET',
         dataType:'JSON',
         async: false,
 		success: function(data){
-            arr = data.data;
+            if(data.code != '0'){
+                console.log("jsonTree.js::loadChildren() - Error : " + data.code)
+            }
+            else{
+                console.log("jsonTree.js::loadChildren() - data : ");
+                console.log(data.data)
+                arr = data.data
+            }
 		},
 		error:function(error){
 			alert("서버 오류입니다. "+error)

@@ -2,6 +2,8 @@ var sideMenu = document.querySelectorAll(".sideBar > div");
 var bottomMenu = document.querySelectorAll(".bottomMenu > div");
 var curMenu = 0;
 
+var user = login()
+user = new User(user[1])
 changeMenu(0, 0);
 
 bottomMenu[0].addEventListener("click", (e)=>{
@@ -40,12 +42,14 @@ $.ajax({
 		bigTitle = data.data;
 		
 		for(var i = 0; i<bigTitle.length; i++){
-			if(bigTitle[i].goal.level == 0){
-				createTitleList(bigTitle[i].goal);
+			if(bigTitle[i].level == 0){
+				createTitleList(bigTitle[i]);
 			}
 		}
-	
-		getProgress();
+		
+		console.log("nowID : "+nowId)
+		renderNewTree(nowId)
+		//getProgress();
 	},
 	error: function(a,b,error){
 		alert("서버 오류입니다. "+error)

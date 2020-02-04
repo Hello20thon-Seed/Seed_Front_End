@@ -1,6 +1,7 @@
 class TableList{
 	constructor(data){
-		this.table = new Table(data);
+		this.table = new Table();
+		this.table.setTable(data)
 		this.share = this.table.getGoal()//.members.length;
 	}
 	
