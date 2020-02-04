@@ -23,6 +23,7 @@ function getGoalPercent(targetId = nowId, forkId = nowId, email = user.email) {
 }
 
 function doneGoal(targetId, forkId = nowId, email = user.email) {
+	var goalBlock = document.querySelector(`.${forkId}`);
 	$.ajax({
 		url: `${url}/done/${forkId}/${targetId}`,
 		type: 'PUT',
@@ -42,6 +43,7 @@ function doneGoal(targetId, forkId = nowId, email = user.email) {
 			}
 			
 			alert('목표 달성 완료!');
+			goalBlock.style.backgroundColor = "#37844f";
 			getProgress();
 		},
 		error: (xhr, status, err) => {
