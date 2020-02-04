@@ -1,10 +1,6 @@
 var nowUrl = window.location.href;
 var nowId = nowUrl.substring(nowUrl.indexOf('?')+1, nowUrl.length);
 var url = 'https://seed-api.run.goorm.io';
-var ajaxURLs = {
-	'children': url+'/goal/children/',
-	'parent': url+'/goal/parent/',
-};
 
 function table(){ 
     this.id
@@ -18,6 +14,11 @@ $.ajax({
     type:'GET',
     async: false,
     success:function(data){
+        if(data.code != 0){
+            console.log("jsonTree.js:: - Error : " + data.code)
+            return
+        }
+        console.log(data)
         renderTree_toDataSource(makeDataSource(data));
     },
     error:function(error){
@@ -30,6 +31,23 @@ function renderTree(id){
     console.log("rendering Tree to ID :"+id);
     $.ajax({
         url:url+'/fork/'+id,
+        type:'GET',
+        async: false,
+        success:function(data){
+			console.log(data)
+            changeTree(makeDataSource(data));
+        },
+        error:function(error){
+			alert("서버 오류입니다. "+error)
+            console.log(error);
+        }
+    });
+}
+
+function renderTree_email(id, email){
+    console.log("rendering Tree to ID :"+id+"EMAIL : " +email);
+    $.ajax({
+        url:url+'/fork/filter/'+id+"/"+email,
         type:'GET',
         async: false,
         success:function(data){
@@ -69,10 +87,10 @@ function loadTree(id){
     return children;
 }
 
-function loadChildren(){
+function loadChildren(id){
     let arr = [];
 	$.ajax({
-		url:ajaxURLs.children + this.id,
+		url:url+" /fork/children/" + id,
 		type:'GET',
         dataType:'JSON',
         async: false,

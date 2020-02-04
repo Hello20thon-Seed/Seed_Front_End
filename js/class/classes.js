@@ -5,20 +5,25 @@ class Table{
         this.level;
         this.parent;
         this.done;
-        this.ownwer;
-        this.originID;
+        this.owner;
+        this.originId;
     }
+
     setTable(data){
+        //console.log("classes.js::setTable() - data : ")
+        //console.log(data)
         this.id = data._id;
         this.contents = data.contents;
         this.level = data.level;
         this.parent = data.parent;
         this.done = data.isDone;
-        this.ownwer = data.ownwer;
-        this.originId = data.originid;
+        this.owner = data.owner;
+        this.originId = data.originId;
     };
 
     getOriginTable(){
+        //console.log("classes.js::getOriginTable() - data12 : ")
+        //console.log(this)
         let goal = []
         $.ajax({
             url: url+"/goal/"+this.originId,
@@ -30,8 +35,8 @@ class Table{
                     goal = [false, data.code]
                 }
                 else{
-                    console.log("classes.js::getOriginTable() - data : ");
-                    console.log(data.data)
+                    //console.log("classes.js::getOriginTable() - data : ");
+                    //console.log(data.data)
                     goal = [true, data.data]
                 }
             },
@@ -59,8 +64,8 @@ class Table{
                     goal = [false, data.code]
                 }
                 else{
-                    console.log("classes.js::getGoal() - data : ");
-                    console.log(data.data)
+                    //console.log("classes.js::getGoal() - data : ");
+                    //console.log(data.data)
                     goal = [true, data.data]
                 }
             },
@@ -84,9 +89,6 @@ class User{
         this.profile = data.profile;
         this.goal = data.goal;
     };
-
-    
-
 }
 
 class Goal{

@@ -60,7 +60,7 @@ var db = false;
     document.addEventListener("click",(e)=>{ //contextMenu가 아닌 부분을 클릭하면 컨텍스트 메뉴 숨김
         e.stopPropagation();
 		if(e.toElement.id != id) context2.style.display = 'none';
-        if(e.toEㅁㅊlement.id != id && e.toElement.className != "overMenu") context.style.display = 'none';
+        if(e.toElement.id != id && e.toElement.className != "overMenu") context.style.display = 'none';
 		console.log("enter listner" + db)
 		if(db == true){
 			console.log('doubling');

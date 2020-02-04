@@ -34,7 +34,8 @@ submitBtn.addEventListener("click", function submit(){
 		postGoal(bigTitle, 0, undefined);
 		setTimeout(async()=>{
 			semiTitle.forEach(async(eachSemiTitle) => {
-				await postGoal(eachSemiTitle.value, 1, parentsId, false);
+                console.log("parent :"+ parentsId)
+				await postGoal(eachSemiTitle.value, 1, parentsId);
             });
 
             forkTable(parentsId, user.email);

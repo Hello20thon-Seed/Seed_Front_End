@@ -1,25 +1,21 @@
 
-function postGoal(contents, level, parents, where = true){
+function postGoal(contents, level, parents){
     $.ajax({
 		url: url+'/goal/create',
 		type: 'POST',
 		data:{
 			contents: contents,
-            level: String(level),
+            level: level,
             parent: parents
 		},
 		dataType:'json',
 		success: function(data){
-            if(where){
-                if(data.code == 0){
-					if(where) getParentsId(contents, level, data.id);
-                    if(where) renderTree(nowId);
-                    alert("목표를 추가했습니다!")
-                }
-                else{
-                    alert("목표를 추가하지못했습니다. 에러코드 : "+data.code)
-                }
+            if(data.code == 0){
+                getParentsId(level, data.id)
             }
+            else{
+                alert("목표를 추가하지못했습니다. 에러코드 : "+data.code)
+                }
 		},
 		error: function(a,b,error){
             alert("서버 오류입니다. "+error)
@@ -128,12 +124,12 @@ function delGoal2(id){
     });
 }
 
-function getParentsId(contents, level, id){
+function getParentsId(level, id){
     if(level == 0){
-        console.log(`${contents}\n${level}\n${id}`);
+        console.log(`${id}`);
         parentsId = id;
     }
     else{
-        console.log(`${contents}\n${level}\n${id}`);
+        console.log(`${id}`);
     }
 }
