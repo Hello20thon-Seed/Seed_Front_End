@@ -6,6 +6,10 @@ var tables = [];
 var user = login()
 user = new User(user[1])
 
+var curTable = new Table();
+curTable.id = nowId;
+curTable.updateGoal()
+
 changeMenu(0, 0);
 
 bottomMenu[0].addEventListener("click", (e)=>{

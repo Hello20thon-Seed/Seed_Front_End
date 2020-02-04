@@ -1,5 +1,7 @@
 
 function postGoal(contents, level, parents){
+    console.log("PostGoal :");
+    console.log(`Contents : ${contents}, level : ${level}, parents : ${parents}`)
     $.ajax({
 		url: url+'/goal/create',
 		type: 'POST',
@@ -11,7 +13,11 @@ function postGoal(contents, level, parents){
 		dataType:'json',
 		success: function(data){
             if(data.code == 0){
-                getParentsId(level, data.id)
+                console.log("level :"+level)
+                if (level == 0){
+                    getParentsId(level, data.id)
+                }
+                
             }
             else{
                 alert("목표를 추가하지못했습니다. 에러코드 : "+data.code)

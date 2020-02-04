@@ -90,7 +90,7 @@ function loadTree(id){
 function loadChildren(id){
     let arr = [];
 	$.ajax({
-		url:url+" /fork/children/" + id,
+		url:url+"/fork/children/" + id,
 		type:'GET',
         dataType:'JSON',
         async: false,
@@ -102,7 +102,7 @@ function loadChildren(id){
                 console.log("jsonTree.js::loadChildren() - data : ");
                 console.log(data.data)
                 arr = data.data
-            }
+            } 
 		},
 		error:function(error){
 			alert("서버 오류입니다. "+error)

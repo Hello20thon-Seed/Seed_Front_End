@@ -91,13 +91,11 @@ var db = false;
                 break;
             case "editGoal_cm2":
 				editGoal(prompt("수정할 내용을 입력하세요."), '0', curContextMenu2.id);
-				window.location.reload()
                 break;
 
-        }	// 그룹, 
-		
+        }	// 그룹, 		
 		db=false;
-		console.log("exit listner" +db)
+        console.log("exit listner" +db)
     });
 
 // Contextmenu();

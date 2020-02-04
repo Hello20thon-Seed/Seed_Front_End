@@ -31,16 +31,17 @@ submitBtn.addEventListener("click", function submit(){
             }   
         }
         
-		postGoal(bigTitle, 0, undefined);
+        postGoal(bigTitle, 0, undefined);
+        
 		setTimeout(async()=>{
 			semiTitle.forEach(async(eachSemiTitle) => {
                 console.log("parent :"+ parentsId)
-				await postGoal(eachSemiTitle.value, 1, parentsId);
+				postGoal(eachSemiTitle.value, 1, parentsId);
             });
 
             forkTable(parentsId, user.email);
             setTimeout(()=>{
-                location.href = "../index.html";
+                //location.href = "../index.html";
             }, 200)
         }, 300);
     }
@@ -63,6 +64,7 @@ function forkTable(tableId, userEmail){
 				console.log("addTable.js::forkTable - Error : " + data.code);
 				return
             }
+            
             
             console.log(`Fork ${tableId} to ${userEmail}`)
 			selectForkId = data.id;

@@ -56,9 +56,10 @@ class TableList{
 	}
 
 	createPeopleList(){
-		for(let i; i<this.members.length;i++){
+		if(curTable.originId != this.table.originId) return;
+		for(let i=0; i<this.members.length;i++){
 			var temp = document.createElement("div");
-			temp.setAttribute("class", "sideMenuList people");
+			temp.setAttribute("class", "sideMenuList people "+this.table.originId);
 			
 			temp.innerHTML = `
 				<span>${this.members[i].nickname}</span>
