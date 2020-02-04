@@ -64,7 +64,7 @@ function renderTree_email(id, email){
 function makeDataSource(data){
     let bigTable = new table();    
     console.log("making datasource to Data :"+ JSON.stringify(data.data));
-    bigTable.id = `${data.data._id}`;
+    bigTable.id = `id${data.data._id}`;
     bigTable.className =`${data.data.level}`;
     bigTable.name = data.data.contents;
     bigTable.children = loadTree(data.data._id);
@@ -77,7 +77,7 @@ function loadTree(id){
 
     for(let i=0; i<children.length;i++){
         let child = new table();
-        child.id = `${children[i]._id}`;
+        child.id = `id${children[i]._id}`;
         child.name = children[i].contents;
         child.className = `${children[i].level}`;
         child.children = loadTree(children[i]._id);

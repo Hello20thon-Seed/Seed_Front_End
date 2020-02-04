@@ -23,7 +23,7 @@ function getGoalPercent(targetId = nowId, forkId = nowId, email = user.email) {
 }
 
 function doneGoal(targetId = curTable.originId , forkId = curContextMenu.id, email = user.email) {
-	var goalBlock = document.getElementById(forkId);
+	var goalBlock = document.querySelectorAll(`#id${forkId} .title`);
 	$.ajax({
 		url: `${url}/done/${forkId}/${targetId}`,
 		type: 'PUT',
@@ -43,7 +43,9 @@ function doneGoal(targetId = curTable.originId , forkId = curContextMenu.id, ema
 			}
 			
 			alert('목표 달성 완료!');
-			goalBlock.style.backgroundColor = "#37844f";
+
+			goalBlock[0].style.backgroundColor = "#37844f";
+			goalBlock[1].style.backgroundColor = "#37844f";
 			// getProgress();
 		},
 		error: (xhr, status, err) => {
