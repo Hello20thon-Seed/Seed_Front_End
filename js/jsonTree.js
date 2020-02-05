@@ -1,6 +1,6 @@
 var nowUrl = window.location.href;
 var nowId = nowUrl.substring(nowUrl.indexOf('?')+1, nowUrl.length);
-var url = 'https://seed-api.run.goorm.io';
+var url = 'https://127.0.0.1:8080';
 var originId;
 
 function table(){ 

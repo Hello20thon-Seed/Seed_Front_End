@@ -35,8 +35,6 @@ function changeMenu(toHide, toShow){
 	bottomMenu[toShow].style.borderTop='none';
 }
 
-var authUrl = 'https://seed-api.run.goorm.io/auth';
-var url = 'https://seed-api.run.goorm.io';
 // 이 위로는 고정 
 
 function getUserTables(userEmail){

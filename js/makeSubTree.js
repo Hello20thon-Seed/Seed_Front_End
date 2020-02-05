@@ -1,9 +1,8 @@
-var url = 'https://seed-api.run.goorm.io';
 //  수정중**
 function postGoal(contents, level, parents){
     console.log("param Parents : "+parents);
     $.ajax({
-		url:'https://seed-api.run.goorm.io/goal/create',
+		url:'https://127.0.0.1:8080/goal/create',
 		type: 'POST',
 		data:{
 			contents: contents,

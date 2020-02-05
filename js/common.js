@@ -1,7 +1,6 @@
 var user;
-var url = "https://seed-api.run.goorm.io";
+var url = "127.0.0.1:8080";
 var nowUrl = window.location.href;
-
 var nowId = nowUrl.substring(nowUrl.indexOf('?')+1, nowUrl.length);
 
 function getProgress(){

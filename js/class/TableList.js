@@ -65,7 +65,7 @@ class TableList{
 			temp.innerHTML = `
 				<span>${this.members[i].nickname}</span>
 				<div class="progressBar">
-					<div class="ingBar" style=`width:20%;`></div>
+					<div class="ingBar" style="width:20%;"></div>
 				</div>
 			`;
 			

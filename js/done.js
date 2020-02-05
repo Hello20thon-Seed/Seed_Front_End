@@ -1,5 +1,4 @@
-var url = 'https://seed-api.run.goorm.io';
-var user = login().data;
+var url = '127.0.0.1:8080';
 var tb = document.querySelector('.table');
 
 function getGoalPercent(forkId = nowId, email = user.email) {
