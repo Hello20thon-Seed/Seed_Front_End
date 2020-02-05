@@ -72,7 +72,9 @@ var db = false;
         console.log(e.toElement.id)
         switch(e.toElement.id){
             case "addGoal_cm":
-                postGoal(prompt("추가할 목표를 입력하세요."), curContextMenu.level, curContextMenu.id);
+				const text = prompt("추가할 목표를 입력하세요.");
+				if(text === null) break;
+				addForkNode(curTable.originId, text, curContextMenu.level, curContextMenu.id, false, user.email);
                 break;
             case "delGoal_cm":
                 console.log("Delete Goal : "+curContextMenu.id)
@@ -82,7 +84,7 @@ var db = false;
 				editGoal(prompt("수정할 내용을 입력하세요."), curContextMenu.level, curContextMenu.id);
                 break;
 			case "cancelDoneGoal_cm" :
-				cancelDoneGoal(curContextMenu.id);
+				cancelDoneGoal();
 				break;
             case "doneGoal_cm":
 				doneGoal();

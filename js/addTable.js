@@ -31,15 +31,15 @@ submitBtn.addEventListener("click", function submit(){
             }   
         }
         
-        postGoal(bigTitle, 0, undefined);
+        postGoal(bigTitle, 0, undefined, true);
         
 		setTimeout(async()=>{
 			semiTitle.forEach(async(eachSemiTitle) => {
                 console.log("parent :"+ parentsId)
-				postGoal(eachSemiTitle.value, 1, parentsId);
+				postGoal(eachSemiTitle.value, 1, parentsId, false);
             });
 
-            forkTable(parentsId, user.email);
+            forkTable(parentsId, user.email, false);
             setTimeout(()=>{
                 //location.href = "../index.html";
             }, 200)

@@ -3,6 +3,7 @@ class TableList{
 		this.table = new Table();
 		this.table.setTable(data);
 		this.members = this.table.getOriginTable().members;
+		this.id = this.table.getOriginTable();
 	}
 
 	createTableBox(){
@@ -13,7 +14,7 @@ class TableList{
 
 		tableBox.innerHTML = `<div class="tableName">${this.table.contents}</div> \
 		<div class="progressBar"> \
-        <div class="ingBar" width="${"80"/*getProgress(this.table.id) 이 ID 주면 해당 진척도(달성률) 반환(int형)*/}%"></div> \ 
+        <div class="ingBar" width="${getProgress(this.table.id)/*getProgress(this.table.id) 이 ID 주면 해당 진척도(달성률) 반환(int형)*/}%"></div> \ 
 		</div> \
 		<div class="share"> \
 			<img src="images/people_icon.png" a~lt="그룹원" height="30px"> \
@@ -64,7 +65,7 @@ class TableList{
 			temp.innerHTML = `
 				<span>${this.members[i].nickname}</span>
 				<div class="progressBar">
-					<div class="ingBar" style="width:20%;"></div>/*getProgress(this.members[i].email, this.originId)*/
+					<div class="ingBar" style=`width:20%;`></div>
 				</div>
 			`;
 			

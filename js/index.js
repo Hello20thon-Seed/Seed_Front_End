@@ -43,24 +43,56 @@ function checkValid(){
 }checkValid();
 
 function getUserTables(userEmail){
+	let a = 0;
+	
 	$.ajax({
 		url: url+"/fork/all/"+userEmail,
 		type:"GET",
+		async: false,
 		success:function(data){
 			if(data.code != 0){
 				console.log("index.js::getUserTables - Error : " + data.code)
 				return
 			}
 			
-			for(let i=0; i<data.data.length; i++){
-				tables[i] = new TableList(data.data[i])
-				tables[i].createTableBox()
+			let i;
+			for(i=0; i<data.data.length; i++){
+				tables[i] = new TableList(data.data[i]);
+				tables[i].createTableBox();
 			}
-			createPlusBtn();
+			if(data.data.length == 0) createPlusBtn();
+			a = i;
+				
+			$.ajax({
+				url: url+"/auth/profile",
+				type:"GET",        
+				async:false,
+				xhrFields: {
+					withCredentials: true
+				},
+				success:function(data){
+					if(data.code != 0){
+						console.log("index.js::getUserTables - Error : " + data.code)
+						return
+					}
+
+					let b = 0;
+					for(let j=a; j<data.data.goal.length; j++){
+						tables[j] = new TableList(data.data.goal[b]);
+						tables[j].createTableBox();
+						b++;
+					}
+					createPlusBtn();
+				},
+				error: function(a,b,error){
+					console.log("index.js::getUserTables - Error : " + error);
+					createPlusBtn();
+				}
+			});
 		},
 		error: function(a,b,error){
-			createPlusBtn();
 			console.log("index.js::getUserTables - Error : " + error);
+			createPlusBtn();
 		}
 	});
 };

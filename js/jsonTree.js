@@ -1,6 +1,7 @@
 var nowUrl = window.location.href;
 var nowId = nowUrl.substring(nowUrl.indexOf('?')+1, nowUrl.length);
 var url = 'https://seed-api.run.goorm.io';
+var originId;
 
 function table(){ 
     this.id
@@ -18,7 +19,7 @@ $.ajax({
             console.log("jsonTree.js:: - Error : " + data.code)
             return
         }
-        console.log(data)
+		originId = data.data.originId;
         renderTree_toDataSource(makeDataSource(data));
     },
     error:function(error){
@@ -103,6 +104,7 @@ function loadChildren(id){
                 console.log(data.data)
                 arr = data.data
             } 
+			getProgress();
 		},
 		error:function(error){
 			alert("서버 오류입니다. "+error)

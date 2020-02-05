@@ -1,6 +1,5 @@
 var sideMenu = document.querySelectorAll(".sideBar > div");
 var bottomMenu = document.querySelectorAll(".bottomMenu > div");
-var forkBtn = document.querySelector("#fork");
 var curMenu = 0;
 var tables = [];
 
@@ -9,7 +8,7 @@ user = new User(user[1])
 
 var curTable = new Table();
 curTable.id = nowId;
-curTable.updateGoal()
+curTable.updateGoal();
 
 changeMenu(0, 0);
 
@@ -44,23 +43,52 @@ function getUserTables(userEmail){
 	$.ajax({
 		url: url+"/fork/all/"+userEmail,
 		type:"GET",
+		async: false,
 		success:function(data){
 			if(data.code != 0){
 				console.log("index.js::getUserTables - Error : " + data.code)
 				return
 			}
-			
-			for(let i=0; i<data.data.length; i++){
+			let a;
+			let i;
+			for(i=0; i<data.data.length; i++){
 				tables[i] = new TableList(data.data[i])
 				tables[i].createTitleList()
 				tables[i].createPeopleList()
 			}
+			
+			a = i;
+			
+			$.ajax({
+				url: url+"/auth/profile",
+				type:"GET",        
+				xhrFields: {
+					withCredentials: true
+				},
+				success:function(data){
+					if(data.code != 0){
+						console.log("index.js::getUserTables - Error : " + data.code);
+						return;
+					}
+
+					let b = 0;
+					for(let j=a; j<data.data.goal.length; j++){
+						console.log('a ->>');
+						tables[j] = new TableList(data.data.goal[b]);
+						tables[j].createTitleList();
+						tables[j].createPeopleList();
+						b++;
+					}
+				}
+			});
+			
+			getProgress();
 		},
 		error: function(a,b,error){
 			console.log("index.js::getUserTables - Error : " + error);
 		}
 	});
-
+	
 }getUserTables(user.email);
 
 function renderNewTree(id){

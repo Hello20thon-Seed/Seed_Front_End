@@ -1,5 +1,5 @@
 
-function postGoal(contents, level, parents){
+function postGoal(contents, level, parents, where){
     console.log("PostGoal :");
     console.log(`Contents : ${contents}, level : ${level}, parents : ${parents}`)
     $.ajax({
@@ -10,6 +10,7 @@ function postGoal(contents, level, parents){
             level: level,
             parent: parents
 		},
+		async: false,
 		dataType:'json',
 		success: function(data){
             if(data.code == 0){
@@ -17,11 +18,11 @@ function postGoal(contents, level, parents){
                 if (level == 0){
                     getParentsId(level, data.id)
                 }
-                
             }
             else{
                 alert("목표를 추가하지못했습니다. 에러코드 : "+data.code)
-                }
+            }
+			
 		},
 		error: function(a,b,error){
             alert("서버 오류입니다. "+error)
@@ -38,20 +39,20 @@ String.prototype.replaceAll = function(org, dest) {
 function editGoal(contents, level, id){
 	// 사용자 특이 입력 방지
 	contents = contents.replaceAll("<", "&lt;").replaceAll(">", "&gt;").trim();
-	if(contents == "") return
+	if(contents == "") return;
 	
     $.ajax({
-		url: url+'/goal/'+id,
+		url: url+'/fork/'+id,
 		type: 'PUT',
 		data:{
 			contents: contents,
-            level: String(level)
+            level: String(level),
 		},
 		dataType:'json',
 		success: function(data){
             if(data.code == 0){
-                //renderTree(nowId);
                 alert("목표를 수정했습니다!")
+				window.location.reload();
             }
             else{
                 alert("목표를 수정하지못했습니다. 에러코드 : "+data.code)
@@ -71,7 +72,7 @@ function delGoal(id){
 		dataType:'json',
 		success: function(data){
             if(data.code == '0'){
-                //renderTree(nowId);
+				window.location.reload();
                 alert("목표를 제거했습니다!")
             }
             else if(data.code == 204){
@@ -82,7 +83,7 @@ function delGoal(id){
                         dataType:'json',
                         success: function(data){
                             if(data.code == 0){
-                                renderTree(nowId);
+								window.location.reload();
                                 alert("목표를 제거했습니다!")
                             }
                             else{
@@ -118,6 +119,7 @@ function delGoal2(id){
             if(data.code == 0){
                 renderTree(nowId);
                 alert("목표를 제거했습니다!");
+				window.location.reload();
             }
             else{
                 alert("목표를 제거하지못했습니다. 에러코드 : "+data.code)

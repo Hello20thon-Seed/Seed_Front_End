@@ -3,19 +3,19 @@ var url = "https://seed-api.run.goorm.io";
 var nowUrl = window.location.href;
 
 var nowId = nowUrl.substring(nowUrl.indexOf('?')+1, nowUrl.length);
-/*
+
 function getProgress(){
     var ingBar = document.querySelectorAll(".ingBar")
+	
     ingBar.forEach((eachIngBar) => {
-        progress = getGoalPercent(eachIngBar.id, eachIngBar.id);
+        progress = getGoalPercent(eachIngBar.id);
 		if(progress === 0) {
 			eachIngBar.style.width = '0%';
 		} else {
 			eachIngBar.style.width = `${progress}%`;			
 		}
-
     });
-}*/
+}
 
 function login(){
 	let user = []
@@ -55,33 +55,4 @@ function checkLogin(){
 	}
 
 	return user
-}
-
-
-function forkTable(tableId, userEmail){
-    $.ajax({
-		url: url+'/fork/create',
-        type: 'POST',
-        xhrFields: {
-            withCredentials: true
-        },
-		data:{
-            id : tableId,
-            owner : userEmail
-		},
-		dataType:'json',
-		success: function(data){
-            if(data.code != 0){
-				console.log("addTable.js::forkTable - Error : " + data.code);
-				return
-            }
-            
-            
-            console.log(`Fork ${tableId} to ${userEmail}`)
-			selectForkId = data.id;
-		},
-		error: function(a,b,error){
-			console.log("addTable.js::forkTable - Error : " + error);
-		}
-    });
 }

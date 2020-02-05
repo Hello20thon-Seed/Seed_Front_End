@@ -2,17 +2,15 @@ var url = 'https://seed-api.run.goorm.io';
 var user = login().data;
 var tb = document.querySelector('.table');
 
-function getGoalPercent(targetId = nowId, forkId = nowId, email = user.email) {
+function getGoalPercent(forkId = nowId, email = user.email) {
 	let result = 0;
 	$.ajax({
-		url: `${url}/done/${forkId}/${targetId}/${email}`,
+		url: `${url}/done/${forkId}/${email}`,
 		type: 'GET',
 		async: false,
 		dataType:'json',
 		success: (data) => {
-			if(data.count === 0 && data.node === 0) {
-				result = 0;
-			} else result = ((data.count / data.node) * 100);
+			result = (data.data * 100); // 백분율 변환
 		},
 		error: (xhr, status, err) => {
 			console.log('done.js::doneGoal() Error - ' + err);
@@ -22,10 +20,10 @@ function getGoalPercent(targetId = nowId, forkId = nowId, email = user.email) {
 	return result;
 }
 
-function doneGoal(targetId = curTable.originId , forkId = curContextMenu.id, email = user.email) {
+function doneGoal(forkId = curContextMenu.id, email = user.email) {
 	var goalBlock = document.querySelectorAll(`#id${forkId} .title`);
 	$.ajax({
-		url: `${url}/done/${forkId}/${targetId}`,
+		url: `${url}/done/${forkId}`,
 		type: 'PUT',
 		async: false,
 		data:{
@@ -35,18 +33,16 @@ function doneGoal(targetId = curTable.originId , forkId = curContextMenu.id, ema
 		success: (data) => {
 			if(!data.success) {
 				if(data.code === 502) {
-					alert('하위 목표가 완료되지 않았습니다.');	
-				} else if(data.code === 501) {
-					alert('목표가 이미 달성되어 있습니다.');	
+					alert('하위 목표가 있으면 완료 할 수 없습니다.');	
 				}
 				return;
 			}
 			
 			alert('목표 달성 완료!');
 
-			goalBlock[0].style.backgroundColor = "#37844f";
-			goalBlock[1].style.backgroundColor = "#37844f";
-			// getProgress();
+			goalBlock[0].style.backgroundColor = "#f39c12";
+			goalBlock[1].style.backgroundColor = "#f39c12";
+			getProgress();
 		},
 		error: (xhr, status, err) => {
 			console.log('done.js::doneGoal() Error - ' + err);
@@ -54,9 +50,9 @@ function doneGoal(targetId = curTable.originId , forkId = curContextMenu.id, ema
 	});
 }
 
-function cancelDoneGoal(targetId = curTable.originId, forkId = curContextMenu.id, email = user.email) {
+function cancelDoneGoal(forkId = curContextMenu.id, email = user.email) {
 	$.ajax({
-		url: `${url}/done/${forkId}/${targetId}`,
+		url: `${url}/done/${forkId}`,
 		type: 'DELETE',
 		async: false,
 		data:{
@@ -64,16 +60,18 @@ function cancelDoneGoal(targetId = curTable.originId, forkId = curContextMenu.id
 		},
 		dataType:'json',
 		success: (data) => {
+			if(!data.success) {
+				if(data.code === 503) {
+					alert('하위 목표가 있으면 완료 해제 할 수 없습니다.');
+				}
+				return;
+			}
+			
 			alert('목표 달성 취소');
-			// getProgress();
+			getProgress();
 		},
 		error: (xhr, status, err) => {
 			console.log('done.js::cancelDoneGoal() Error - ' + err);
 		}
 	});
 }
-// $.ajax({
-// 	url: url+'/done/'+,
-// 	type:'PUT',
-	
-// })
