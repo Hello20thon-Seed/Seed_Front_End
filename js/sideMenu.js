@@ -1,5 +1,6 @@
 var sideMenu = document.querySelectorAll(".sideBar > div");
 var bottomMenu = document.querySelectorAll(".bottomMenu > div");
+var forkBtn = document.querySelector("#fork");
 var curMenu = 0;
 var tables = [];
 

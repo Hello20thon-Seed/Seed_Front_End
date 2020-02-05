@@ -161,6 +161,7 @@ body{
   width: auto;
   height: 40px !important;
   margin-bottom: 5px;
+  display: flex;
 }
 
 #chart-container .orgchart .node i{
@@ -190,20 +191,25 @@ body{
 }
 
 .orgchart .node .toggleBtn{
-  position: absolute !important;
-  left: 105% !important;
-  top: 25%;
+  display: none;
 }
 
 .orgchart .node .overMenu{
 	width:25px;
 	height:25px;
-	float:left;
-	position:absolute;
+  position: absolute;
+  left: 100%;
+  top: 15%;
 	margin:0;
 	padding:0;
-  left: 100%; 
-  top: 15%;
   transition:2s;
   z-index: 999;
+  display:none;
+}
+
+#fork{
+  position: relative;
+  background-color: black;
+  width: 5rem;
+  height: 3rem;
 }
