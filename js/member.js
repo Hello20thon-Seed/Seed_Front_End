@@ -4,16 +4,17 @@ shareButton.addEventListener("click", () => {
 	const value = prompt("공유할 사용자 이메일을 입력해주세요.");
 	if(value === null) return;
 	
-	addMember(value);
+	addMember(value, user.email);
 });
 
 
-function addMember(email) {
+function addMember(email, owner) {
     $.ajax({
 		url: url+'/member/' + originId,
         type: 'PUT',
 		data:{
-            email
+			email/*,
+			owner*/
 		},
 		dataType:'json',
 		success: function(data){

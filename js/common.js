@@ -1,20 +1,27 @@
-var user;
-var url = "127.0.0.1:8080";
+//var url = "https://seed-api.run.goorm.io";
+var url = "http://127.0.0.1:8080";
 var nowUrl = window.location.href;
 var nowId = nowUrl.substring(nowUrl.indexOf('?')+1, nowUrl.length);
 
-function getProgress(){
-    var ingBar = document.querySelectorAll(".ingBar")
-	
-    ingBar.forEach((eachIngBar) => {
-        progress = getGoalPercent(eachIngBar.id);
-		if(progress === 0) {
-			eachIngBar.style.width = '0%';
-		} else {
-			eachIngBar.style.width = `${progress}%`;			
-		}
-    });
+function getProgress(forkId, email) {
+		let result = 0;
+		$.ajax({
+			url: `${url}/done/${forkId}/${email}`,	
+			type: 'GET',
+			async: false,
+			dataType:'json',
+			success: (data) => {
+				result = (data.data * 100); // 백분율 변환
+			},
+			error: (xhr, status, err) => {
+				console.log('done.js::doneGoal() Error - ' + err);
+			}
+		});
+		
+		console.log(`${forkId} : ${result}%`)
+		return result.toString();
 }
+
 
 function login(){
 	let user = []

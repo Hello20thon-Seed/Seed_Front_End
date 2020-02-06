@@ -1,4 +1,4 @@
-var user
+var user;
 var tables = [];
 
 var tableLayout = document.querySelector("#tableLayout");
@@ -7,25 +7,25 @@ const tableWidth = 385 + 20 * 2;
 var tableLayoutWidth = parseInt(window.getComputedStyle(tableLayout).width) - 45;
 var column = parseInt(tableLayoutWidth/tableWidth);
 
-function checkValid(){
+async function checkValid(){
 	
 	var loginBtn = document.querySelector("#loginBtn");
 
 	user = login()
 	if(user[0]){
-		user = new User(user[1])
+		user = await new User(user[1])
 		console.log("UserData:")
 		console.log(user)
 		
-		getUserTables(user.email)
+		loginBtn.style.display="block"
+		loginBtn.innerHTML=`<span>반갑습니다, <span class="highlight">${user.nickname}</span>님.</span><a id="logout" href="${url}/auth/logout">logout</a>`;
+		
+		user.getUserTables("main");
+
 		setTimeout(()=>{
 			var plusBox = document.querySelector("#plus-table");
 			plusBox.setAttribute("href", "./pages/addTable.html");
 		}, 300)
-		loginBtn.style.display="block"
-		loginBtn.innerHTML=`<span>반갑습니다, <span class="highlight">${user.nickname}</span>님.</span><a id="logout" href="${url}/auth/logout">logout</a>`;
-		
-		
 	}
 	else{
 		createPlusBtn();
@@ -42,60 +42,6 @@ function checkValid(){
 	}
 }checkValid();
 
-function getUserTables(userEmail){
-	let a = 0;
-	
-	$.ajax({
-		url: url+"/fork/all/"+userEmail,
-		type:"GET",
-		async: false,
-		success:function(data){
-			if(data.code != 0){
-				console.log("index.js::getUserTables - Error : " + data.code)
-				return
-			}
-			
-			let i;
-			for(i=0; i<data.data.length; i++){
-				tables[i] = new TableList(data.data[i]);
-				tables[i].createTableBox();
-			}
-			if(data.data.length == 0) createPlusBtn();
-			a = i;
-				
-			$.ajax({
-				url: url+"/auth/profile",
-				type:"GET",        
-				async:false,
-				xhrFields: {
-					withCredentials: true
-				},
-				success:function(data){
-					if(data.code != 0){
-						console.log("index.js::getUserTables - Error : " + data.code)
-						return
-					}
-
-					let b = 0;
-					for(let j=a; j<data.data.goal.length; j++){
-						tables[j] = new TableList(data.data.goal[b]);
-						tables[j].createTableBox();
-						b++;
-					}
-					createPlusBtn();
-				},
-				error: function(a,b,error){
-					console.log("index.js::getUserTables - Error : " + error);
-					createPlusBtn();
-				}
-			});
-		},
-		error: function(a,b,error){
-			console.log("index.js::getUserTables - Error : " + error);
-			createPlusBtn();
-		}
-	});
-};
 
 window.addEventListener("resize", ()=>{
 	tables = document.querySelectorAll(".tableBox").length;

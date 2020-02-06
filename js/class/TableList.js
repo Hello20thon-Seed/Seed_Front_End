@@ -3,18 +3,19 @@ class TableList{
 		this.table = new Table();
 		this.table.setTable(data);
 		this.members = this.table.getOriginTable().members;
-		this.id = this.table.getOriginTable();
+		this.owner = data.owner
 	}
 
 	createTableBox(){
 		let tableBox = document.createElement("a");
+		let per = getProgress(this.table.id, user.email)
 
 		tableBox.setAttribute("class", "tableBox");
 		tableBox.setAttribute("href", `./pages/sideMenu.html?${this.table.id}`);
 
 		tableBox.innerHTML = `<div class="tableName">${this.table.contents}</div> \
 		<div class="progressBar"> \
-        <div class="ingBar" width="${getProgress(this.table.id)/*getProgress(this.table.id) 이 ID 주면 해당 진척도(달성률) 반환(int형)*/}%"></div> \ 
+        <div class="ingBar" style="width: ${per}%;"></div> \ 
 		</div> \
 		<div class="share"> \
 			<img src="images/people_icon.png" a~lt="그룹원" height="30px"> \
@@ -32,13 +33,14 @@ class TableList{
 
 	createTitleList(){
 		var temp = document.createElement("div");
+		let per = getProgress(this.id, user.email)
 		temp.setAttribute("class", "sideMenuList tableListEl");
 		temp.id = this.table.id;
 		
 		temp.innerHTML = `
 			<span>${this.table.contents}</span>
 			<div class="progressBar">
-				<div class="ingBar" id="${this.table.id}" style="width:50%;"></div>
+				<div class="ingBar" id="${this.table.id}" style="width: ${per}%;"></div>
 			</div>
 		`;
 
@@ -60,12 +62,15 @@ class TableList{
 		if(curTable.originId != this.table.originId) return;
 		for(let i=0; i<this.members.length;i++){
 			var temp = document.createElement("div");
+			let per = getProgress(this.table.id, this.members[i].email)
+			console.log("asdkjlknldaslkdno123ou1chaklc")
+			console.log(this)
 			temp.setAttribute("class", "sideMenuList people "+this.table.originId);
 			
 			temp.innerHTML = `
 				<span>${this.members[i].nickname}</span>
 				<div class="progressBar">
-					<div class="ingBar" style="width:20%;"></div>
+					<div class="ingBar" style="width: ${per}%;"></div>
 				</div>
 			`;
 			
@@ -73,6 +78,7 @@ class TableList{
 
 			temp.addEventListener("click", ()=>{
 				renderTree_email(this.table.originId, this.members[i].email)
+
 			})
 
 		}

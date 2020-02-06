@@ -1,6 +1,5 @@
 var nowUrl = window.location.href;
 var nowId = nowUrl.substring(nowUrl.indexOf('?')+1, nowUrl.length);
-var url = 'https://127.0.0.1:8080';
 var originId;
 
 function table(){ 
@@ -35,7 +34,8 @@ function renderTree(id){
         type:'GET',
         async: false,
         success:function(data){
-			console.log(data)
+            console.log(data)
+            originId = data.data.originId;
             changeTree(makeDataSource(data));
         },
         error:function(error){
@@ -46,7 +46,7 @@ function renderTree(id){
 }
 
 function renderTree_email(id, email){
-    console.log("rendering Tree to ID :"+id+"EMAIL : " +email);
+    console.log("rendering Tree to ID :"+originId+" EMAIL : " +email);
     $.ajax({
         url:url+'/fork/filter/'+id+"/"+email,
         type:'GET',
@@ -104,7 +104,6 @@ function loadChildren(id){
                 console.log(data.data)
                 arr = data.data
             } 
-			getProgress();
 		},
 		error:function(error){
 			alert("서버 오류입니다. "+error)

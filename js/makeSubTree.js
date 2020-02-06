@@ -2,7 +2,7 @@
 function postGoal(contents, level, parents){
     console.log("param Parents : "+parents);
     $.ajax({
-		url:'https://127.0.0.1:8080/goal/create',
+		url:url+'/goal/create',
 		type: 'POST',
 		data:{
 			contents: contents,

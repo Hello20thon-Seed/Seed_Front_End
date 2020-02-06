@@ -87,7 +87,7 @@ var db = false;
 				cancelDoneGoal();
 				break;
             case "doneGoal_cm":
-				doneGoal();
+				doneGoal(curContextMenu.id, user.email);
 				break;
 			case "delGoal_cm2":
 				delGoal2(curContextMenu2.id);
@@ -113,7 +113,7 @@ function contextMenu2(e){
 }
 
 
-
+/*
 var target = document.querySelector('#chart-container .orgchart');
 
 target.style="cursor: default;";
@@ -130,4 +130,4 @@ var config = {
     attributeOldValue: true
 };
 
-observer.observe(target, config);
+observer.observe(target, config);*/

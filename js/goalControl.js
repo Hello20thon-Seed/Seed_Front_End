@@ -112,7 +112,7 @@ function delGoal(id){
 
 function delGoal2(id){
     $.ajax({
-		url: url+'/fork/'+id,
+		url: url+'/fork/all/'+id,
 		type: 'DELETE',
 		dataType:'json',
 		success: function(data){

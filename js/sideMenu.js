@@ -10,6 +10,8 @@ var curTable = new Table();
 curTable.id = nowId;
 curTable.updateGoal();
 
+user.getUserTables("side")
+
 changeMenu(0, 0);
 
 bottomMenu[0].addEventListener("click", (e)=>{
@@ -36,59 +38,6 @@ function changeMenu(toHide, toShow){
 }
 
 // 이 위로는 고정 
-
-function getUserTables(userEmail){
-	$.ajax({
-		url: url+"/fork/all/"+userEmail,
-		type:"GET",
-		async: false,
-		success:function(data){
-			if(data.code != 0){
-				console.log("index.js::getUserTables - Error : " + data.code)
-				return
-			}
-			let a;
-			let i;
-			for(i=0; i<data.data.length; i++){
-				tables[i] = new TableList(data.data[i])
-				tables[i].createTitleList()
-				tables[i].createPeopleList()
-			}
-			
-			a = i;
-			
-			$.ajax({
-				url: url+"/auth/profile",
-				type:"GET",        
-				xhrFields: {
-					withCredentials: true
-				},
-				success:function(data){
-					if(data.code != 0){
-						console.log("index.js::getUserTables - Error : " + data.code);
-						return;
-					}
-
-					let b = 0;
-					for(let j=a; j<data.data.goal.length; j++){
-						console.log('a ->>');
-						tables[j] = new TableList(data.data.goal[b]);
-						tables[j].createTitleList();
-						tables[j].createPeopleList();
-						b++;
-					}
-				}
-			});
-			
-			getProgress();
-		},
-		error: function(a,b,error){
-			console.log("index.js::getUserTables - Error : " + error);
-		}
-	});
-	
-}getUserTables(user.email);
-
 function renderNewTree(id){
 	console.log("Render Tree : "+id);
 	renderTree(id);

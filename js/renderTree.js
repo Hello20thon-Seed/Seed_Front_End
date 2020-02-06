@@ -26,7 +26,7 @@ async function changeTree(datasource){
   oc.init({'data' : datasource});
   oc2.init({'data' : datasource});
 
-  //showOverMenu();
+  showOverMenu();
 
   setTimeout(()=>{
 	  Contextmenu();

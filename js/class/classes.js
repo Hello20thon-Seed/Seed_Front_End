@@ -4,7 +4,7 @@ class Table{
         this.contents;
         this.level;
         this.parent;
-        this.done;
+        this.isdone;
         this.owner;
         this.originId;
     }
@@ -16,9 +16,15 @@ class Table{
         this.contents = data.contents;
         this.level = data.level;
         this.parent = data.parent;
-        this.done = data.isDone;
+        this.isDone = data.isDone;
         this.owner = data.owner;
         this.originId = data.originId;
+
+        if(data.isDone){
+            var goalBlock = document.querySelectorAll(`#id${this.id} .title`);
+            goalBlock[0].style.backgroundColor = "#f39c12";
+			goalBlock[1].style.backgroundColor = "#f39c12";
+        }
     };
 
     getOriginTable(){
@@ -88,6 +94,18 @@ class User{
         this.nickname = data.nickname;
         this.profile = data.profile;
         this.goal = data.goal;
+    };
+
+    getUserTables(where){
+        for(let i=0; i<this.goal.length; i++){
+            tables[i] = new TableList(this.goal[i]);
+            if(where == "main") tables[i].createTableBox();
+            if(where == "side"){
+                tables[i].createTitleList()
+                tables[i].createPeopleList()
+            }
+        }
+        if(where == "main") createPlusBtn();
     };
 }
 
